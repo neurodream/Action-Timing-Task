@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2023.2.3),
-    on May 27, 2025, at 02:36
+    on May 27, 2025, at 06:19
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -433,6 +433,9 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
     # Set experiment start values for variable component break_dur
     break_dur = 30
     break_durContainer = []
+    # Run 'Begin Experiment' code from surpress_logging
+    from psychopy import logging
+    logging.console.setLevel(logging.CRITICAL)
     
     # --- Initialize components for Routine "general_instruction" ---
     general_instruction_text = visual.TextStim(win=win, name='general_instruction_text',
