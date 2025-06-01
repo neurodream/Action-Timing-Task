@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2023.2.3),
-    on June 01, 2025, at 11:58
+    on June 01, 2025, at 12:19
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -364,9 +364,9 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
     # Set experiment start values for variable component line_thickness
     line_thickness = 2
     line_thicknessContainer = []
-    # Set experiment start values for variable component reward_sizes_euros
-    reward_sizes_euros = [0.02, 0.05, 0.10]
-    reward_sizes_eurosContainer = []
+    # Set experiment start values for variable component reward_sizes
+    reward_sizes = [1, 2, 3]
+    reward_sizesContainer = []
     # Set experiment start values for variable component resting_dur
     resting_dur = 1
     resting_durContainer = []
@@ -442,22 +442,6 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
         languageStyle='LTR',
         depth=0.0);
     continue_to_resting_T1 = keyboard.Keyboard()
-    
-    # --- Initialize components for Routine "break_relax" ---
-    break_text = visual.TextStim(win=win, name='break_text',
-        text=None,
-        font='Open Sans',
-        pos=(0, 0), height=letter_height, wrapWidth=None, ori=0.0, 
-        color=element_color, colorSpace='rgb', opacity=None, 
-        languageStyle='LTR',
-        depth=0.0);
-    score_text = visual.TextStim(win=win, name='score_text',
-        text=None,
-        font='Open Sans',
-        pos=(0, 0), height=letter_height, wrapWidth=None, ori=0.0, 
-        color='white', colorSpace='rgb', opacity=None, 
-        languageStyle='LTR',
-        depth=-1.0);
     
     # --- Initialize components for Routine "resting_state" ---
     fix_cross_resting_1 = visual.ShapeStim(
@@ -581,10 +565,10 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
     inner_r_min    = inner_min_frac * usable_r
     inner_r_max    = inner_max_frac * usable_r
     # Run 'Begin Experiment' code from set_reward_size
-    cent_colors = {
-        10: [ 1.0,  0.68, -1.0 ],
-        5:  [ 0.5,  0.5,  0.5  ],
-        2: [ 0.6,  0.0, -0.6  ]
+    reward_size_colors = {
+        3: [ 1.0,  0.68, -1.0 ],
+        2:  [ 0.5,  0.5,  0.5  ],
+        1: [ 0.6,  0.0, -0.6  ]
         }
     
     
@@ -864,202 +848,6 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
     thisExp.nextEntry()
     # the Routine "general_instruction" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset()
-    
-    # set up handler to look after randomisation of conditions etc
-    breaks_2 = data.TrialHandler(nReps=5.0, method='random', 
-        extraInfo=expInfo, originPath=-1,
-        trialList=[None],
-        seed=None, name='breaks_2')
-    thisExp.addLoop(breaks_2)  # add the loop to the experiment
-    thisBreak_2 = breaks_2.trialList[0]  # so we can initialise stimuli with some values
-    # abbreviate parameter names if possible (e.g. rgb = thisBreak_2.rgb)
-    if thisBreak_2 != None:
-        for paramName in thisBreak_2:
-            globals()[paramName] = thisBreak_2[paramName]
-    
-    for thisBreak_2 in breaks_2:
-        currentLoop = breaks_2
-        thisExp.timestampOnFlip(win, 'thisRow.t')
-        # pause experiment here if requested
-        if thisExp.status == PAUSED:
-            pauseExperiment(
-                thisExp=thisExp, 
-                inputs=inputs, 
-                win=win, 
-                timers=[routineTimer], 
-                playbackComponents=[]
-        )
-        # abbreviate parameter names if possible (e.g. rgb = thisBreak_2.rgb)
-        if thisBreak_2 != None:
-            for paramName in thisBreak_2:
-                globals()[paramName] = thisBreak_2[paramName]
-        
-        # --- Prepare to start Routine "break_relax" ---
-        continueRoutine = True
-        # update component parameters for each repeat
-        thisExp.addData('break_relax.started', globalClock.getTime())
-        # Run 'Begin Routine' code from update_break_text
-        
-            
-        # Run 'Begin Routine' code from check_if_last
-        breaks_given += 1
-        
-        print(breaks_given, n_blocks)
-        
-        if int(breaks_given) == int(n_blocks):
-            print("HERE")
-            continueRoutine = False
-            breaks_2.finished = True
-        # Run 'Begin Routine' code from hide_pointer_outline
-        pointer.opacity = 0
-        pointer_blocker.opacity = 0
-        outline.opacity = 0
-        outline_bg.opacity = 0
-        rewardbar.opacity = 0
-        cross.opacity = 0
-        # keep track of which components have finished
-        break_relaxComponents = [break_text, score_text]
-        for thisComponent in break_relaxComponents:
-            thisComponent.tStart = None
-            thisComponent.tStop = None
-            thisComponent.tStartRefresh = None
-            thisComponent.tStopRefresh = None
-            if hasattr(thisComponent, 'status'):
-                thisComponent.status = NOT_STARTED
-        # reset timers
-        t = 0
-        _timeToFirstFrame = win.getFutureFlipTime(clock="now")
-        frameN = -1
-        
-        # --- Run Routine "break_relax" ---
-        routineForceEnded = not continueRoutine
-        while continueRoutine:
-            # get current time
-            t = routineTimer.getTime()
-            tThisFlip = win.getFutureFlipTime(clock=routineTimer)
-            tThisFlipGlobal = win.getFutureFlipTime(clock=None)
-            frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
-            # update/draw components on each frame
-            
-            # *break_text* updates
-            
-            # if break_text is starting this frame...
-            if break_text.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
-                # keep track of start time/frame for later
-                break_text.frameNStart = frameN  # exact frame index
-                break_text.tStart = t  # local t and not account for scr refresh
-                break_text.tStartRefresh = tThisFlipGlobal  # on global time
-                win.timeOnFlip(break_text, 'tStartRefresh')  # time at next scr refresh
-                # update status
-                break_text.status = STARTED
-                break_text.setAutoDraw(True)
-            
-            # if break_text is active this frame...
-            if break_text.status == STARTED:
-                # update params
-                break_text.setText('', log=False)
-            
-            # if break_text is stopping this frame...
-            if break_text.status == STARTED:
-                # is it time to stop? (based on global clock, using actual start)
-                if tThisFlipGlobal > break_text.tStartRefresh + break_dur-frameTolerance:
-                    # keep track of stop time/frame for later
-                    break_text.tStop = t  # not accounting for scr refresh
-                    break_text.frameNStop = frameN  # exact frame index
-                    # update status
-                    break_text.status = FINISHED
-                    break_text.setAutoDraw(False)
-            
-            # *score_text* updates
-            
-            # if score_text is starting this frame...
-            if score_text.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
-                # keep track of start time/frame for later
-                score_text.frameNStart = frameN  # exact frame index
-                score_text.tStart = t  # local t and not account for scr refresh
-                score_text.tStartRefresh = tThisFlipGlobal  # on global time
-                win.timeOnFlip(score_text, 'tStartRefresh')  # time at next scr refresh
-                # add timestamp to datafile
-                thisExp.timestampOnFlip(win, 'score_text.started')
-                # update status
-                score_text.status = STARTED
-                score_text.setAutoDraw(True)
-            
-            # if score_text is active this frame...
-            if score_text.status == STARTED:
-                # update params
-                score_text.setText('', log=False)
-            
-            # if score_text is stopping this frame...
-            if score_text.status == STARTED:
-                # is it time to stop? (based on global clock, using actual start)
-                if tThisFlipGlobal > score_text.tStartRefresh + break_dur-frameTolerance:
-                    # keep track of stop time/frame for later
-                    score_text.tStop = t  # not accounting for scr refresh
-                    score_text.frameNStop = frameN  # exact frame index
-                    # add timestamp to datafile
-                    thisExp.timestampOnFlip(win, 'score_text.stopped')
-                    # update status
-                    score_text.status = FINISHED
-                    score_text.setAutoDraw(False)
-            # Run 'Each Frame' code from update_break_text
-            """ # TODO alignment did not work.
-            break_text.anchorText = 'center'
-            score_text.anchorText = 'center'
-            break_text.alignText = 'center'
-            score_text.alignText = 'right'
-            
-            break_text.text = 'Short break!\n\n\n\n\nContinuing in...\n' + str(int(break_dur + 1 - t))
-            score_text.text = f'\n\nYour score: {score}\nComputer\'s score: {score_computer}\n\n\n'
-            
-            text_width = score_text.size[0]
-            score_text.pos = (-text_width / 4, 0) # guesstimated division number, could not understand maths behind it - and still does not look good. drop.
-            
-            #"""
-            
-            break_text.text = f'Short break!\n\nYour score: \n{score}\nComputer\'s score: \n{score_computer}\n\nContinuing in...\n' + str(int(break_dur + 1 - t))
-            
-            # check for quit (typically the Esc key)
-            if defaultKeyboard.getKeys(keyList=["escape"]):
-                thisExp.status = FINISHED
-            if thisExp.status == FINISHED or endExpNow:
-                endExperiment(thisExp, inputs=inputs, win=win)
-                return
-            
-            # check if all components have finished
-            if not continueRoutine:  # a component has requested a forced-end of Routine
-                routineForceEnded = True
-                break
-            continueRoutine = False  # will revert to True if at least one component still running
-            for thisComponent in break_relaxComponents:
-                if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
-                    continueRoutine = True
-                    break  # at least one component has not yet finished
-            
-            # refresh the screen
-            if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
-                win.flip()
-        
-        # --- Ending Routine "break_relax" ---
-        for thisComponent in break_relaxComponents:
-            if hasattr(thisComponent, "setAutoDraw"):
-                thisComponent.setAutoDraw(False)
-        thisExp.addData('break_relax.stopped', globalClock.getTime())
-        # Run 'End Routine' code from hide_pointer_outline
-        pointer.opacity = 1
-        pointer_blocker.opacity = 1
-        outline.opacity = 1
-        outline_bg.opacity = 1
-        cross.opacity = 1
-        # the Routine "break_relax" was not non-slip safe, so reset the non-slip timer
-        routineTimer.reset()
-        thisExp.nextEntry()
-        
-        if thisSession is not None:
-            # if running in a Session with a Liaison client, send data up to now
-            thisSession.sendExperimentData()
-    # completed 5.0 repeats of 'breaks_2'
-    
     
     # --- Prepare to start Routine "resting_state" ---
     continueRoutine = True
@@ -1658,13 +1446,12 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
             inner.size  = (inner_radius_start, inner_radius_start)
             inner.opacity = 1
             # Run 'Begin Routine' code from set_reward_size
-            reward_size_euro = random.choice(reward_sizes_euros)
-            reward_size_cent = int(reward_size_euro*100)
+            reward_size = random.choice(reward_sizes)
             
-            bb.sendMarker(val=100+reward_size_cent)
+            bb.sendMarker(val=100+reward_size)
             
-            inner.color = cent_colors[reward_size_cent]
-            rewardbar.color = cent_colors[reward_size_cent]
+            inner.color = reward_size_colors[reward_size]
+            rewardbar.color = reward_size_colors[reward_size]
             
             pointer.opacity = 1
             pointer_blocker.opacity = 1
@@ -2104,16 +1891,16 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
             rand_float = random.random()
             if rand_float > reward_prob:
                 reward = False
-                current_win_text.text = "NO GAIN" # ""
+                current_win_text.text = "+ 0" # ""
                 bb.sendMarker(val=200)
             else:
                 reward = True
                 # reward_sound.play()
-                current_win_text.text = f"GAIN + {reward_size_euro:.2f} €"
-                money_amount += reward_size_euro
+                current_win_text.text = f"+ {reward_size}"
+                score += reward_size
                 bb.sendMarker(val=210)
                 
-            current_score_text.text = f"total: {money_amount:.2f} €"
+            current_score_text.text = f"score: {score}"
             # Run 'Begin Routine' code from calc_reward_reveal_time
             reward_reveal_time = 1.0
             jitter          = np.random.uniform(-0.1, +0.1)
@@ -2224,7 +2011,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
             thisExp.addData('reward_reveal.stopped', globalClock.getTime())
             # Run 'End Routine' code from store_reward_info
             thisExp.addData('reward', reward)
-            thisExp.addData('reward_size', reward_size_euro)
+            thisExp.addData('reward_size', reward_size)
             thisExp.addData('reward_chance_endpoint', p_end)
             thisExp.addData('snr_db', snr_db)
             
@@ -2253,12 +2040,9 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
         # Run 'Begin Routine' code from check_if_last
         breaks_given += 1
         
-        print(breaks_given, n_blocks)
-        
         if int(breaks_given) == int(n_blocks):
-            print("HERE")
             continueRoutine = False
-            breaks_2.finished = True
+            breaks.finished = True
         # Run 'Begin Routine' code from hide_pointer_outline
         pointer.opacity = 0
         pointer_blocker.opacity = 0

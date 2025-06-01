@@ -229,7 +229,7 @@
         <Param val="" valType="extendedCode" updates="constant" name="Begin Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
-        <Param val="# TODO: yes or no based on bubble size&amp;#10;&amp;#10;if current_i + 1 &gt; len(p_noisy):&amp;#10;    reward_prob = 0 # waited until end of trial&amp;#10;else:&amp;#10;    reward_prob = p_noisy[current_i]&amp;#10;&amp;#10;rand_float = random.random()&amp;#10;if rand_float &gt; reward_prob:&amp;#10;    reward = False&amp;#10;    current_win_text.text = &quot;NO GAIN&quot; # &quot;&quot;&amp;#10;    bb.sendMarker(val=200)&amp;#10;else:&amp;#10;    reward = True&amp;#10;    # reward_sound.play()&amp;#10;    current_win_text.text = f&quot;GAIN + {reward_size_euro:.2f} €&quot;&amp;#10;    money_amount += reward_size_euro&amp;#10;    bb.sendMarker(val=210)&amp;#10;    &amp;#10;current_score_text.text = f&quot;total: {money_amount:.2f} €&quot;" valType="extendedCode" updates="constant" name="Begin Routine"/>
+        <Param val="# TODO: yes or no based on bubble size&amp;#10;&amp;#10;if current_i + 1 &gt; len(p_noisy):&amp;#10;    reward_prob = 0 # waited until end of trial&amp;#10;else:&amp;#10;    reward_prob = p_noisy[current_i]&amp;#10;&amp;#10;rand_float = random.random()&amp;#10;if rand_float &gt; reward_prob:&amp;#10;    reward = False&amp;#10;    current_win_text.text = &quot;+ 0&quot; # &quot;&quot;&amp;#10;    bb.sendMarker(val=200)&amp;#10;else:&amp;#10;    reward = True&amp;#10;    # reward_sound.play()&amp;#10;    current_win_text.text = f&quot;+ {reward_size}&quot;&amp;#10;    score += reward_size&amp;#10;    bb.sendMarker(val=210)&amp;#10;    &amp;#10;current_score_text.text = f&quot;score: {score}&quot;" valType="extendedCode" updates="constant" name="Begin Routine"/>
         <Param val="Py" valType="str" updates="None" name="Code Type"/>
         <Param val="" valType="extendedCode" updates="constant" name="Each Frame"/>
         <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
@@ -253,7 +253,7 @@
         <Param val="" valType="extendedCode" updates="constant" name="End Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="End JS Routine"/>
-        <Param val="thisExp.addData('reward', reward)&amp;#10;thisExp.addData('reward_size', reward_size_euro)&amp;#10;thisExp.addData('reward_chance_endpoint', p_end)&amp;#10;thisExp.addData('snr_db', snr_db)&amp;#10;&amp;#10;thisExp.nextEntry()" valType="extendedCode" updates="constant" name="End Routine"/>
+        <Param val="thisExp.addData('reward', reward)&amp;#10;thisExp.addData('reward_size', reward_size)&amp;#10;thisExp.addData('reward_chance_endpoint', p_end)&amp;#10;thisExp.addData('snr_db', snr_db)&amp;#10;&amp;#10;thisExp.nextEntry()" valType="extendedCode" updates="constant" name="End Routine"/>
         <Param val="False" valType="bool" updates="None" name="disabled"/>
         <Param val="store_reward_info" valType="code" updates="None" name="name"/>
       </CodeComponent>
@@ -763,10 +763,10 @@
       <CodeComponent name="set_reward_size" plugin="None">
         <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
-        <Param val="cent_colors = {&amp;#10;    10: [ 1.0,  0.68, -1.0 ],&amp;#10;    5:  [ 0.5,  0.5,  0.5  ],&amp;#10;    2: [ 0.6,  0.0, -0.6  ]&amp;#10;    }&amp;#10;&amp;#10;&amp;#10;&quot;&quot;&quot;&amp;#10;cent_colors = {&amp;#10;    10: hex_to_psychopy_rgb(&quot;#D4B03E&quot;),&amp;#10;    5: hex_to_psychopy_rgb(&quot;#B0B0B4&quot;),&amp;#10;    2: hex_to_psychopy_rgb(&quot;#D1A679&quot;)&amp;#10;    &amp;#10;    }&amp;#10;&quot;&quot;&quot;" valType="extendedCode" updates="constant" name="Begin Experiment"/>
+        <Param val="reward_size_colors = {&amp;#10;    3: [ 1.0,  0.68, -1.0 ],&amp;#10;    2:  [ 0.5,  0.5,  0.5  ],&amp;#10;    1: [ 0.6,  0.0, -0.6  ]&amp;#10;    }&amp;#10;&amp;#10;&amp;#10;&quot;&quot;&quot;&amp;#10;cent_colors = {&amp;#10;    10: hex_to_psychopy_rgb(&quot;#D4B03E&quot;),&amp;#10;    5: hex_to_psychopy_rgb(&quot;#B0B0B4&quot;),&amp;#10;    2: hex_to_psychopy_rgb(&quot;#D1A679&quot;)&amp;#10;    &amp;#10;    }&amp;#10;&quot;&quot;&quot;" valType="extendedCode" updates="constant" name="Begin Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
-        <Param val="reward_size_euro = random.choice(reward_sizes_euros)&amp;#10;reward_size_cent = int(reward_size_euro*100)&amp;#10;&amp;#10;bb.sendMarker(val=100+reward_size_cent)&amp;#10;&amp;#10;inner.color = cent_colors[reward_size_cent]&amp;#10;rewardbar.color = cent_colors[reward_size_cent]&amp;#10;&amp;#10;pointer.opacity = 1&amp;#10;pointer_blocker.opacity = 1" valType="extendedCode" updates="constant" name="Begin Routine"/>
+        <Param val="reward_size = random.choice(reward_sizes)&amp;#10;&amp;#10;bb.sendMarker(val=100+reward_size)&amp;#10;&amp;#10;inner.color = reward_size_colors[reward_size]&amp;#10;rewardbar.color = reward_size_colors[reward_size]&amp;#10;&amp;#10;pointer.opacity = 1&amp;#10;pointer_blocker.opacity = 1" valType="extendedCode" updates="constant" name="Begin Routine"/>
         <Param val="Py" valType="str" updates="None" name="Code Type"/>
         <Param val="" valType="extendedCode" updates="constant" name="Each Frame"/>
         <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
@@ -1644,10 +1644,10 @@
         <Param val="" valType="code" updates="constant" name="stopVal"/>
         <Param val="False" valType="bool" updates="None" name="syncScreenRefresh"/>
       </VariableComponent>
-      <VariableComponent name="reward_sizes_euros" plugin="None">
+      <VariableComponent name="reward_sizes" plugin="None">
         <Param val="False" valType="bool" updates="None" name="disabled"/>
         <Param val="" valType="code" updates="None" name="durationEstim"/>
-        <Param val="reward_sizes_euros" valType="code" updates="None" name="name"/>
+        <Param val="reward_sizes" valType="code" updates="None" name="name"/>
         <Param val="False" valType="bool" updates="constant" name="saveEndExp"/>
         <Param val="True" valType="bool" updates="constant" name="saveEndRoutine"/>
         <Param val="never" valType="str" updates="constant" name="saveFrameValue"/>
@@ -1655,7 +1655,7 @@
         <Param val="False" valType="bool" updates="constant" name="saveStartRoutine"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
-        <Param val="[0.02, 0.05, 0.10]" valType="code" updates="constant" name="startExpValue"/>
+        <Param val="[1, 2, 3]" valType="code" updates="constant" name="startExpValue"/>
         <Param val="" valType="code" updates="None" name="startFrameValue"/>
         <Param val="" valType="code" updates="constant" name="startRoutineValue"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
@@ -2002,7 +2002,7 @@
         <Param val="" valType="extendedCode" updates="constant" name="Begin Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
-        <Param val="breaks_given += 1&amp;#10;&amp;#10;print(breaks_given, n_blocks)&amp;#10;&amp;#10;if int(breaks_given) == int(n_blocks):&amp;#10;    print(&quot;HERE&quot;)&amp;#10;    continueRoutine = False&amp;#10;    breaks_2.finished = True" valType="extendedCode" updates="constant" name="Begin Routine"/>
+        <Param val="breaks_given += 1&amp;#10;&amp;#10;if int(breaks_given) == int(n_blocks):&amp;#10;    continueRoutine = False&amp;#10;    breaks.finished = True" valType="extendedCode" updates="constant" name="Begin Routine"/>
         <Param val="Py" valType="str" updates="None" name="Code Type"/>
         <Param val="" valType="extendedCode" updates="constant" name="Each Frame"/>
         <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
@@ -2035,19 +2035,6 @@
   <Flow>
     <Routine name="init_vars"/>
     <Routine name="general_instruction"/>
-    <LoopInitiator loopType="TrialHandler" name="breaks_2">
-      <Param name="Selected rows" updates="None" val="" valType="str"/>
-      <Param name="conditions" updates="None" val="None" valType="str"/>
-      <Param name="conditionsFile" updates="None" val="" valType="file"/>
-      <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
-      <Param name="isTrials" updates="None" val="True" valType="bool"/>
-      <Param name="loopType" updates="None" val="random" valType="str"/>
-      <Param name="nReps" updates="None" val="5" valType="num"/>
-      <Param name="name" updates="None" val="breaks_2" valType="code"/>
-      <Param name="random seed" updates="None" val="" valType="code"/>
-    </LoopInitiator>
-    <Routine name="break_relax"/>
-    <LoopTerminator name="breaks_2"/>
     <Routine name="resting_state"/>
     <Routine name="TUS"/>
     <Routine name="resting_state"/>
