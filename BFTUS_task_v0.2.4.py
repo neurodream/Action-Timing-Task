@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2023.2.3),
-    on June 01, 2025, at 11:58
+    on June 01, 2025, at 11:39
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -37,6 +37,14 @@ from psychopy.hardware import keyboard
 import random
 import numpy as np
 from psychopy import logging
+# Run 'Before Experiment' code from init_counters
+score = 0
+score_computer = 0
+progress_perc = 0
+breaks_given = 0
+
+# decrepit (should be safe to delete)
+money_amount = 0
 # --- Setup global variables (available in all functions) ---
 # Ensure that relative paths start from the same directory as this script
 _thisDir = os.path.dirname(os.path.abspath(__file__))
@@ -111,7 +119,7 @@ def setupData(expInfo, dataDir=None):
     thisExp = data.ExperimentHandler(
         name=expName, version='',
         extraInfo=expInfo, runtimeInfo=None,
-        originPath='C:\\Users\\nicade\\Documents\\projects\\BFTUS\\task\\Action-Timing-Task\\BFTUS_task_v0.2.4_lastrun.py',
+        originPath='C:\\Users\\nicade\\Documents\\projects\\BFTUS\\task\\Action-Timing-Task\\BFTUS_task_v0.2.4.py',
         savePickle=True, saveWideText=True,
         dataFileName=dataDir + os.sep + filename, sortColumns='time'
     )
@@ -371,7 +379,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
     resting_dur = 1
     resting_durContainer = []
     # Set experiment start values for variable component n_blocks
-    n_blocks = 3
+    n_blocks = 4
     n_blocksContainer = []
     # Run 'Begin Experiment' code from derive_vars
     reward_chance_endpoints = np.linspace(0, 1, n_reward_chance_endpoints)
@@ -419,19 +427,11 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
         print("WARNING: no EEG device connected/detected - falling back to command line printing instead")
         bb = CLIMarker()
     # Set experiment start values for variable component break_dur
-    break_dur = 3
+    break_dur = 5
     break_durContainer = []
     # Run 'Begin Experiment' code from surpress_logging
     from psychopy import logging
     logging.console.setLevel(logging.CRITICAL)
-    # Run 'Begin Experiment' code from init_counters
-    score = 0
-    score_computer = 0
-    progress_perc = 0
-    breaks_given = 0
-    
-    # decrepit (should be safe to delete)
-    money_amount = 0
     
     # --- Initialize components for Routine "general_instruction" ---
     general_instruction_text = visual.TextStim(win=win, name='general_instruction_text',
@@ -866,19 +866,19 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
     routineTimer.reset()
     
     # set up handler to look after randomisation of conditions etc
-    breaks_2 = data.TrialHandler(nReps=5.0, method='random', 
+    trials_2 = data.TrialHandler(nReps=5.0, method='random', 
         extraInfo=expInfo, originPath=-1,
         trialList=[None],
-        seed=None, name='breaks_2')
-    thisExp.addLoop(breaks_2)  # add the loop to the experiment
-    thisBreak_2 = breaks_2.trialList[0]  # so we can initialise stimuli with some values
-    # abbreviate parameter names if possible (e.g. rgb = thisBreak_2.rgb)
-    if thisBreak_2 != None:
-        for paramName in thisBreak_2:
-            globals()[paramName] = thisBreak_2[paramName]
+        seed=None, name='trials_2')
+    thisExp.addLoop(trials_2)  # add the loop to the experiment
+    thisTrial_2 = trials_2.trialList[0]  # so we can initialise stimuli with some values
+    # abbreviate parameter names if possible (e.g. rgb = thisTrial_2.rgb)
+    if thisTrial_2 != None:
+        for paramName in thisTrial_2:
+            globals()[paramName] = thisTrial_2[paramName]
     
-    for thisBreak_2 in breaks_2:
-        currentLoop = breaks_2
+    for thisTrial_2 in trials_2:
+        currentLoop = trials_2
         thisExp.timestampOnFlip(win, 'thisRow.t')
         # pause experiment here if requested
         if thisExp.status == PAUSED:
@@ -889,10 +889,10 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
                 timers=[routineTimer], 
                 playbackComponents=[]
         )
-        # abbreviate parameter names if possible (e.g. rgb = thisBreak_2.rgb)
-        if thisBreak_2 != None:
-            for paramName in thisBreak_2:
-                globals()[paramName] = thisBreak_2[paramName]
+        # abbreviate parameter names if possible (e.g. rgb = thisTrial_2.rgb)
+        if thisTrial_2 != None:
+            for paramName in thisTrial_2:
+                globals()[paramName] = thisTrial_2[paramName]
         
         # --- Prepare to start Routine "break_relax" ---
         continueRoutine = True
@@ -901,15 +901,6 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
         # Run 'Begin Routine' code from update_break_text
         
             
-        # Run 'Begin Routine' code from check_if_last
-        breaks_given += 1
-        
-        print(breaks_given, n_blocks)
-        
-        if int(breaks_given) == int(n_blocks):
-            print("HERE")
-            continueRoutine = False
-            breaks_2.finished = True
         # Run 'Begin Routine' code from hide_pointer_outline
         pointer.opacity = 0
         pointer_blocker.opacity = 0
@@ -917,6 +908,11 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
         outline_bg.opacity = 0
         rewardbar.opacity = 0
         cross.opacity = 0
+        # Run 'Begin Routine' code from check_if_last
+        breaks_given += 1
+        
+        if breaks_given == n_blocks:
+            continueRoutine = False
         # keep track of which components have finished
         break_relaxComponents = [break_text, score_text]
         for thisComponent in break_relaxComponents:
@@ -1058,7 +1054,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
         if thisSession is not None:
             # if running in a Session with a Liaison client, send data up to now
             thisSession.sendExperimentData()
-    # completed 5.0 repeats of 'breaks_2'
+    # completed 5.0 repeats of 'trials_2'
     
     
     # --- Prepare to start Routine "resting_state" ---
@@ -2250,15 +2246,6 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
         # Run 'Begin Routine' code from update_break_text
         
             
-        # Run 'Begin Routine' code from check_if_last
-        breaks_given += 1
-        
-        print(breaks_given, n_blocks)
-        
-        if int(breaks_given) == int(n_blocks):
-            print("HERE")
-            continueRoutine = False
-            breaks_2.finished = True
         # Run 'Begin Routine' code from hide_pointer_outline
         pointer.opacity = 0
         pointer_blocker.opacity = 0
@@ -2266,6 +2253,11 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
         outline_bg.opacity = 0
         rewardbar.opacity = 0
         cross.opacity = 0
+        # Run 'Begin Routine' code from check_if_last
+        breaks_given += 1
+        
+        if breaks_given == n_blocks:
+            continueRoutine = False
         # keep track of which components have finished
         break_relaxComponents = [break_text, score_text]
         for thisComponent in break_relaxComponents:
