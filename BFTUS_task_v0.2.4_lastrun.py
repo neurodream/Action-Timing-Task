@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2023.2.3),
-    on June 01, 2025, at 12:19
+    on June 01, 2025, at 12:32
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -601,20 +601,13 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
         depth=0.0);
     
     # --- Initialize components for Routine "reward_reveal" ---
-    current_score_text = visual.TextStim(win=win, name='current_score_text',
-        text=None,
-        font='Open Sans',
-        pos=(0, -pointer_len*1.75), height=letter_height, wrapWidth=None, ori=0.0, 
-        color=element_color, colorSpace='rgb', opacity=None, 
-        languageStyle='LTR',
-        depth=0.0);
     current_win_text = visual.TextStim(win=win, name='current_win_text',
         text=None,
         font='Open Sans',
-        pos=(0, -pointer_len*1.35), height=letter_height, wrapWidth=None, ori=0.0, 
+        pos=(0, 0), height=letter_height, wrapWidth=None, ori=0.0, 
         color=element_color, colorSpace='rgb', opacity=1.0, 
         languageStyle='LTR',
-        depth=-1.0);
+        depth=0.0);
     
     # --- Initialize components for Routine "break_relax" ---
     break_text = visual.TextStim(win=win, name='break_text',
@@ -1883,6 +1876,8 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
             # Run 'Begin Routine' code from calculate_reward
             # TODO: yes or no based on bubble size
             
+            current_win_text.depth = -10
+            
             if current_i + 1 > len(p_noisy):
                 reward_prob = 0 # waited until end of trial
             else:
@@ -1899,14 +1894,17 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
                 current_win_text.text = f"+ {reward_size}"
                 score += reward_size
                 bb.sendMarker(val=210)
-                
-            current_score_text.text = f"score: {score}"
             # Run 'Begin Routine' code from calc_reward_reveal_time
             reward_reveal_time = 1.0
             jitter          = np.random.uniform(-0.1, +0.1)
             reward_reveal_time += jitter
+            # Run 'Begin Routine' code from hide_rewardbar
+            rewardbar.opacity = 0
+            cross.opacity = 0
+            pointer.opacity = 0
+            pointer_blocker.opacity = 0
             # keep track of which components have finished
-            reward_revealComponents = [current_score_text, current_win_text]
+            reward_revealComponents = [current_win_text]
             for thisComponent in reward_revealComponents:
                 thisComponent.tStart = None
                 thisComponent.tStop = None
@@ -1928,26 +1926,6 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
                 tThisFlipGlobal = win.getFutureFlipTime(clock=None)
                 frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
                 # update/draw components on each frame
-                
-                # *current_score_text* updates
-                
-                # if current_score_text is starting this frame...
-                if current_score_text.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
-                    # keep track of start time/frame for later
-                    current_score_text.frameNStart = frameN  # exact frame index
-                    current_score_text.tStart = t  # local t and not account for scr refresh
-                    current_score_text.tStartRefresh = tThisFlipGlobal  # on global time
-                    win.timeOnFlip(current_score_text, 'tStartRefresh')  # time at next scr refresh
-                    # add timestamp to datafile
-                    thisExp.timestampOnFlip(win, 'current_score_text.started')
-                    # update status
-                    current_score_text.status = STARTED
-                    current_score_text.setAutoDraw(True)
-                
-                # if current_score_text is active this frame...
-                if current_score_text.status == STARTED:
-                    # update params
-                    pass
                 
                 # *current_win_text* updates
                 
@@ -2020,6 +1998,9 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
             # check if it is time for a break
             if (global_clock.getTime() - task_start_time) // block_dur > breaks_given:
                 trials.finished = True
+            # Run 'End Routine' code from hide_rewardbar
+            rewardbar.opacity = 1
+            cross.opacity = 1
             # the Routine "reward_reveal" was not non-slip safe, so reset the non-slip timer
             routineTimer.reset()
             thisExp.nextEntry()
@@ -2044,12 +2025,8 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
             continueRoutine = False
             breaks.finished = True
         # Run 'Begin Routine' code from hide_pointer_outline
-        pointer.opacity = 0
-        pointer_blocker.opacity = 0
         outline.opacity = 0
         outline_bg.opacity = 0
-        rewardbar.opacity = 0
-        cross.opacity = 0
         # keep track of which components have finished
         break_relaxComponents = [break_text, score_text]
         for thisComponent in break_relaxComponents:
