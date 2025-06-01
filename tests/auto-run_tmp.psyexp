@@ -10,7 +10,7 @@
     <Param val="" valType="str" updates="None" name="End Message"/>
     <Param val="{'participant': 'f&quot;{randint(0, 999999):06.0f}&quot;', 'session': '001'}" valType="code" updates="None" name="Experiment info"/>
     <Param val="True" valType="bool" updates="None" name="Force stereo"/>
-    <Param val="True" valType="bool" updates="None" name="Full-screen window"/>
+    <Param val="False" valType="bool" updates="None" name="Full-screen window"/>
     <Param val="Documents" valType="str" updates="None" name="HTML path"/>
     <Param val="" valType="str" updates="None" name="Incomplete URL"/>
     <Param val="testMonitor" valType="str" updates="None" name="Monitor"/>
@@ -26,7 +26,7 @@
     <Param val="False" valType="bool" updates="None" name="Show mouse"/>
     <Param val="deg" valType="str" updates="None" name="Units"/>
     <Param val="" valType="str" updates="None" name="Use version"/>
-    <Param val="[1920, 1080]" valType="list" updates="None" name="Window size (pixels)"/>
+    <Param val="[800, 600]" valType="list" updates="None" name="Window size (pixels)"/>
     <Param val="none" valType="str" updates="None" name="backgroundFit"/>
     <Param val="" valType="str" updates="None" name="backgroundImg"/>
     <Param val="avg" valType="str" updates="None" name="blendMode"/>
@@ -173,31 +173,6 @@
         <Param val="" valType="code" updates="constant" name="stopVal"/>
         <Param val="False" valType="bool" updates="None" name="useWindowParams"/>
       </RoutineSettingsComponent>
-      <TextComponent name="current_score_text" plugin="None">
-        <Param val="$element_color" valType="color" updates="constant" name="color"/>
-        <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
-        <Param val="1" valType="num" updates="constant" name="contrast"/>
-        <Param val="False" valType="bool" updates="None" name="disabled"/>
-        <Param val="" valType="code" updates="None" name="durationEstim"/>
-        <Param val="None" valType="str" updates="constant" name="flip"/>
-        <Param val="Open Sans" valType="str" updates="constant" name="font"/>
-        <Param val="LTR" valType="str" updates="None" name="languageStyle"/>
-        <Param val="letter_height" valType="num" updates="constant" name="letterHeight"/>
-        <Param val="current_score_text" valType="code" updates="None" name="name"/>
-        <Param val="" valType="num" updates="constant" name="opacity"/>
-        <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(0, -pointer_len*1.75)" valType="list" updates="constant" name="pos"/>
-        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
-        <Param val="" valType="code" updates="None" name="startEstim"/>
-        <Param val="time (s)" valType="str" updates="None" name="startType"/>
-        <Param val="0.0" valType="code" updates="None" name="startVal"/>
-        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
-        <Param val="" valType="code" updates="constant" name="stopVal"/>
-        <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="" valType="str" updates="constant" name="text"/>
-        <Param val="from exp settings" valType="str" updates="None" name="units"/>
-        <Param val="" valType="num" updates="constant" name="wrapWidth"/>
-      </TextComponent>
       <TextComponent name="current_win_text" plugin="None">
         <Param val="$element_color" valType="color" updates="constant" name="color"/>
         <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
@@ -211,7 +186,7 @@
         <Param val="current_win_text" valType="code" updates="None" name="name"/>
         <Param val="1" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(0, -pointer_len*1.35)" valType="list" updates="constant" name="pos"/>
+        <Param val="(0, 0)" valType="list" updates="constant" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
@@ -229,14 +204,14 @@
         <Param val="" valType="extendedCode" updates="constant" name="Begin Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
-        <Param val="# TODO: yes or no based on bubble size&amp;#10;&amp;#10;if current_i + 1 &gt; len(p_noisy):&amp;#10;    reward_prob = 0 # waited until end of trial&amp;#10;else:&amp;#10;    reward_prob = p_noisy[current_i]&amp;#10;&amp;#10;rand_float = random.random()&amp;#10;if rand_float &gt; reward_prob:&amp;#10;    reward = False&amp;#10;    current_win_text.text = &quot;NO GAIN&quot; # &quot;&quot;&amp;#10;    bb.sendMarker(val=200)&amp;#10;else:&amp;#10;    reward = True&amp;#10;    # reward_sound.play()&amp;#10;    current_win_text.text = f&quot;GAIN + {reward_size_euro:.2f} €&quot;&amp;#10;    money_amount += reward_size_euro&amp;#10;    bb.sendMarker(val=210)&amp;#10;    &amp;#10;current_score_text.text = f&quot;total: {money_amount:.2f} €&quot;" valType="extendedCode" updates="constant" name="Begin Routine"/>
+        <Param val="# TODO: yes or no based on bubble size&amp;#10;&amp;#10;current_win_text.depth = -10&amp;#10;&amp;#10;if current_i + 1 &gt; len(p_noisy):&amp;#10;    reward_prob = 0 # waited until end of trial&amp;#10;else:&amp;#10;    reward_prob = p_noisy[current_i]&amp;#10;&amp;#10;rand_float = random.random()&amp;#10;if rand_float &gt; reward_prob:&amp;#10;    reward = False&amp;#10;    current_win_text.text = &quot;+ 0&quot; # &quot;&quot;&amp;#10;    bb.sendMarker(val=200)&amp;#10;else:&amp;#10;    reward = True&amp;#10;    # reward_sound.play()&amp;#10;    current_win_text.text = f&quot;+ {reward_size}&quot;&amp;#10;    score += reward_size&amp;#10;    bb.sendMarker(val=210)" valType="extendedCode" updates="constant" name="Begin Routine"/>
         <Param val="Py" valType="str" updates="None" name="Code Type"/>
         <Param val="" valType="extendedCode" updates="constant" name="Each Frame"/>
         <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
         <Param val="" valType="extendedCode" updates="constant" name="End Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="End JS Routine"/>
-        <Param val="# check if it is time for a break&amp;#10;if (global_clock.getTime() - task_start_time) // block_dur &gt; breaks_given:&amp;#10;    trials.finished = True&amp;#10;    break_pending = True&amp;#10;    breaks_given += 1" valType="extendedCode" updates="constant" name="End Routine"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End Routine"/>
         <Param val="False" valType="bool" updates="None" name="disabled"/>
         <Param val="calculate_reward" valType="code" updates="None" name="name"/>
       </CodeComponent>
@@ -253,7 +228,7 @@
         <Param val="" valType="extendedCode" updates="constant" name="End Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="End JS Routine"/>
-        <Param val="thisExp.addData('reward', reward)&amp;#10;thisExp.addData('reward_size', reward_size_euro)&amp;#10;thisExp.addData('reward_chance_endpoint', p_end)&amp;#10;thisExp.addData('snr_db', snr_db)&amp;#10;&amp;#10;thisExp.nextEntry()" valType="extendedCode" updates="constant" name="End Routine"/>
+        <Param val="thisExp.addData('reward', reward)&amp;#10;thisExp.addData('reward_size', reward_size)&amp;#10;thisExp.addData('reward_chance_endpoint', p_end)&amp;#10;thisExp.addData('snr_db', snr_db)&amp;#10;&amp;#10;thisExp.nextEntry()" valType="extendedCode" updates="constant" name="End Routine"/>
         <Param val="False" valType="bool" updates="None" name="disabled"/>
         <Param val="store_reward_info" valType="code" updates="None" name="name"/>
       </CodeComponent>
@@ -263,7 +238,7 @@
         <Param val="" valType="extendedCode" updates="constant" name="Begin Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
-        <Param val="reward_reveal_time = 1.0&amp;#10;jitter          = np.random.uniform(-0.1, +0.1)&amp;#10;reward_reveal_time += jitter" valType="extendedCode" updates="constant" name="Begin Routine"/>
+        <Param val="reward_reveal_time = 0.1&amp;#10;jitter          = np.random.uniform(-0.01, +0.01)&amp;#10;reward_reveal_time += jitter" valType="extendedCode" updates="constant" name="Begin Routine"/>
         <Param val="Py" valType="str" updates="None" name="Code Type"/>
         <Param val="if t &gt; reward_reveal_time:&amp;#10;    continueRoutine = False" valType="extendedCode" updates="constant" name="Each Frame"/>
         <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
@@ -299,7 +274,7 @@
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin Routine"/>
         <Param val="Py" valType="str" updates="None" name="Code Type"/>
-        <Param val="progress_perc = global_clock.getTime()/task_time&amp;#10;&amp;#10;start_angle = np.pi / 2&amp;#10;end_angle = start_angle + 2 * np.pi * (1 - progress_perc)&amp;#10;&amp;#10;theta = np.linspace(start_angle, end_angle, 100)&amp;#10;&amp;#10;vertices = [(radius * np.cos(t), radius * np.sin(t)) for t in theta]&amp;#10;&amp;#10;outline.vertices = vertices" valType="extendedCode" updates="constant" name="Each Frame"/>
+        <Param val="progress_perc = global_clock.getTime()/task_time&amp;#10;&amp;#10;start_angle = np.pi / 2&amp;#10;end_angle = start_angle + 2 * np.pi * max(0, (1 - progress_perc))&amp;#10;&amp;#10;theta = np.linspace(start_angle, end_angle, 100)&amp;#10;&amp;#10;vertices = [(radius * np.cos(t), radius * np.sin(t)) for t in theta]&amp;#10;&amp;#10;outline.vertices = vertices" valType="extendedCode" updates="constant" name="Each Frame"/>
         <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
         <Param val="" valType="extendedCode" updates="constant" name="End Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
@@ -307,6 +282,57 @@
         <Param val="" valType="extendedCode" updates="constant" name="End Routine"/>
         <Param val="False" valType="bool" updates="None" name="disabled"/>
         <Param val="update_outline_cont3" valType="code" updates="None" name="name"/>
+      </CodeComponent>
+      <CodeComponent name="check_for_break" plugin="None">
+        <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin Routine"/>
+        <Param val="Py" valType="str" updates="None" name="Code Type"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Each Frame"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End JS Routine"/>
+        <Param val="# check if it is time for a break&amp;#10;if (global_clock.getTime() - task_start_time) // block_dur &gt; breaks_given:&amp;#10;    trials.finished = True" valType="extendedCode" updates="constant" name="End Routine"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="check_for_break" valType="code" updates="None" name="name"/>
+      </CodeComponent>
+      <CodeComponent name="hide_rewardbar" plugin="None">
+        <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
+        <Param val="rewardbar.opacity = 0&amp;#10;cross.opacity = 0&amp;#10;pointer.opacity = 0&amp;#10;pointer_blocker.opacity = 0" valType="extendedCode" updates="constant" name="Begin Routine"/>
+        <Param val="Py" valType="str" updates="None" name="Code Type"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Each Frame"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End JS Routine"/>
+        <Param val="rewardbar.opacity = 1&amp;#10;cross.opacity = 1" valType="extendedCode" updates="constant" name="End Routine"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="hide_rewardbar" valType="code" updates="None" name="name"/>
+      </CodeComponent>
+      <CodeComponent name="track_exp_time" plugin="None">
+        <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin Routine"/>
+        <Param val="Py" valType="str" updates="None" name="Code Type"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Each Frame"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End JS Routine"/>
+        <Param val="if global_clock.getTime() &gt;= task_time:&amp;#10;    trials.finished = True" valType="extendedCode" updates="constant" name="End Routine"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="track_exp_time" valType="code" updates="None" name="name"/>
       </CodeComponent>
     </Routine>
     <Routine name="goodbye_screen">
@@ -326,7 +352,7 @@
         <Param val="False" valType="bool" updates="None" name="useWindowParams"/>
       </RoutineSettingsComponent>
       <TextComponent name="money_reveal_text" plugin="None">
-        <Param val="$element_color" valType="color" updates="constant" name="color"/>
+        <Param val="element_color" valType="color" updates="constant" name="color"/>
         <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
         <Param val="1" valType="num" updates="constant" name="contrast"/>
         <Param val="False" valType="bool" updates="None" name="disabled"/>
@@ -624,109 +650,6 @@
         <Param val="True" valType="bool" updates="constant" name="syncScreenRefresh"/>
       </KeyboardComponent>
     </Routine>
-    <Routine name="break_rest">
-      <RoutineSettingsComponent name="break_rest" plugin="None">
-        <Param val="none" valType="str" updates="None" name="backgroundFit"/>
-        <Param val="" valType="str" updates="None" name="backgroundImg"/>
-        <Param val="$[0,0,0]" valType="color" updates="None" name="color"/>
-        <Param val="rgb" valType="str" updates="None" name="colorSpace"/>
-        <Param val="" valType="str" updates="constant" name="desc"/>
-        <Param val="False" valType="bool" updates="None" name="disabled"/>
-        <Param val="" valType="code" updates="None" name="durationEstim"/>
-        <Param val="break_rest" valType="code" updates="None" name="name"/>
-        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
-        <Param val="" valType="code" updates="constant" name="skipIf"/>
-        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
-        <Param val="" valType="code" updates="constant" name="stopVal"/>
-        <Param val="False" valType="bool" updates="None" name="useWindowParams"/>
-      </RoutineSettingsComponent>
-      <TextComponent name="break_text" plugin="None">
-        <Param val="$element_color" valType="color" updates="constant" name="color"/>
-        <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
-        <Param val="1" valType="num" updates="constant" name="contrast"/>
-        <Param val="False" valType="bool" updates="None" name="disabled"/>
-        <Param val="" valType="code" updates="None" name="durationEstim"/>
-        <Param val="None" valType="str" updates="constant" name="flip"/>
-        <Param val="Open Sans" valType="str" updates="constant" name="font"/>
-        <Param val="LTR" valType="str" updates="None" name="languageStyle"/>
-        <Param val="letter_height" valType="num" updates="constant" name="letterHeight"/>
-        <Param val="break_text" valType="code" updates="None" name="name"/>
-        <Param val="" valType="num" updates="constant" name="opacity"/>
-        <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(0, 0)" valType="list" updates="constant" name="pos"/>
-        <Param val="False" valType="bool" updates="None" name="saveStartStop"/>
-        <Param val="" valType="code" updates="None" name="startEstim"/>
-        <Param val="time (s)" valType="str" updates="None" name="startType"/>
-        <Param val="0.0" valType="code" updates="None" name="startVal"/>
-        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
-        <Param val="$resting_dur" valType="code" updates="constant" name="stopVal"/>
-        <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="Short break!&amp;#10;&amp;#10;Please take a moment to actively relax, before we continue in...&amp;#10;&amp;#10;" valType="str" updates="constant" name="text"/>
-        <Param val="from exp settings" valType="str" updates="None" name="units"/>
-        <Param val="" valType="code" updates="None" name="validator"/>
-        <Param val="" valType="num" updates="constant" name="wrapWidth"/>
-      </TextComponent>
-      <TextComponent name="break_counter" plugin="None">
-        <Param val="$element_color" valType="color" updates="constant" name="color"/>
-        <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
-        <Param val="1" valType="num" updates="constant" name="contrast"/>
-        <Param val="False" valType="bool" updates="None" name="disabled"/>
-        <Param val="" valType="code" updates="None" name="durationEstim"/>
-        <Param val="None" valType="str" updates="constant" name="flip"/>
-        <Param val="Open Sans" valType="str" updates="constant" name="font"/>
-        <Param val="LTR" valType="str" updates="None" name="languageStyle"/>
-        <Param val="letter_height" valType="num" updates="constant" name="letterHeight"/>
-        <Param val="break_counter" valType="code" updates="None" name="name"/>
-        <Param val="" valType="num" updates="constant" name="opacity"/>
-        <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(0, 0)" valType="list" updates="constant" name="pos"/>
-        <Param val="False" valType="bool" updates="None" name="saveStartStop"/>
-        <Param val="" valType="code" updates="None" name="startEstim"/>
-        <Param val="time (s)" valType="str" updates="None" name="startType"/>
-        <Param val="0.0" valType="code" updates="None" name="startVal"/>
-        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
-        <Param val="$break_dur" valType="code" updates="constant" name="stopVal"/>
-        <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="" valType="str" updates="constant" name="text"/>
-        <Param val="from exp settings" valType="str" updates="None" name="units"/>
-        <Param val="" valType="code" updates="None" name="validator"/>
-        <Param val="" valType="num" updates="constant" name="wrapWidth"/>
-      </TextComponent>
-      <CodeComponent name="update_break_time_remain" plugin="None">
-        <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Begin Experiment"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
-        <Param val="if not break_pending:&amp;#10;    continueRoutine = False  # skip break if not flagged&amp;#10;else:&amp;#10;    break_pending = False  # reset break flag&amp;#10;    total_time = 0  # reset total_time for next block" valType="extendedCode" updates="constant" name="Begin Routine"/>
-        <Param val="Py" valType="str" updates="None" name="Code Type"/>
-        <Param val="break_counter.text = f&quot;\n\n\n\n{int(resting_dur + 1 - t)}&quot;" valType="extendedCode" updates="constant" name="Each Frame"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
-        <Param val="" valType="extendedCode" updates="constant" name="End Experiment"/>
-        <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
-        <Param val="" valType="extendedCode" updates="constant" name="End JS Routine"/>
-        <Param val="" valType="extendedCode" updates="constant" name="End Routine"/>
-        <Param val="False" valType="bool" updates="None" name="disabled"/>
-        <Param val="update_break_time_remain" valType="code" updates="None" name="name"/>
-      </CodeComponent>
-      <CodeComponent name="hide_pointer_outline" plugin="None">
-        <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Begin Experiment"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
-        <Param val="pointer.opacity = 0&amp;#10;pointer_blocker.opacity = 0&amp;#10;outline.opacity = 0&amp;#10;outline_bg.opacity = 0&amp;#10;rewardbar.opacity = 0&amp;#10;cross.opacity = 0" valType="extendedCode" updates="constant" name="Begin Routine"/>
-        <Param val="Py" valType="str" updates="None" name="Code Type"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Each Frame"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
-        <Param val="" valType="extendedCode" updates="constant" name="End Experiment"/>
-        <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
-        <Param val="" valType="extendedCode" updates="constant" name="End JS Routine"/>
-        <Param val="pointer.opacity = 1&amp;#10;pointer_blocker.opacity = 1&amp;#10;outline.opacity = 1&amp;#10;outline_bg.opacity = 1&amp;#10;cross.opacity = 1" valType="extendedCode" updates="constant" name="End Routine"/>
-        <Param val="False" valType="bool" updates="None" name="disabled"/>
-        <Param val="hide_pointer_outline" valType="code" updates="None" name="name"/>
-      </CodeComponent>
-    </Routine>
     <Routine name="baseline_blink">
       <RoutineSettingsComponent name="baseline_blink" plugin="None">
         <Param val="none" valType="str" updates="None" name="backgroundFit"/>
@@ -823,7 +746,7 @@
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
         <Param val="0.0" valType="code" updates="None" name="startVal"/>
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
-        <Param val="0.6" valType="code" updates="constant" name="stopVal"/>
+        <Param val="0.06" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
         <Param val="" valType="str" updates="constant" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
@@ -849,10 +772,10 @@
       <CodeComponent name="set_reward_size" plugin="None">
         <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
-        <Param val="cent_colors = {&amp;#10;    10: [ 1.0,  0.68, -1.0 ],&amp;#10;    5:  [ 0.5,  0.5,  0.5  ],&amp;#10;    2: [ 0.6,  0.0, -0.6  ]&amp;#10;    }&amp;#10;&amp;#10;&amp;#10;&quot;&quot;&quot;&amp;#10;cent_colors = {&amp;#10;    10: hex_to_psychopy_rgb(&quot;#D4B03E&quot;),&amp;#10;    5: hex_to_psychopy_rgb(&quot;#B0B0B4&quot;),&amp;#10;    2: hex_to_psychopy_rgb(&quot;#D1A679&quot;)&amp;#10;    &amp;#10;    }&amp;#10;&quot;&quot;&quot;" valType="extendedCode" updates="constant" name="Begin Experiment"/>
+        <Param val="reward_size_colors = {&amp;#10;    3: [ 1.0,  0.68, -1.0 ],&amp;#10;    2:  [ 0.5,  0.5,  0.5  ],&amp;#10;    1: [ 0.6,  0.0, -0.6  ]&amp;#10;    }&amp;#10;&amp;#10;&amp;#10;&quot;&quot;&quot;&amp;#10;cent_colors = {&amp;#10;    10: hex_to_psychopy_rgb(&quot;#D4B03E&quot;),&amp;#10;    5: hex_to_psychopy_rgb(&quot;#B0B0B4&quot;),&amp;#10;    2: hex_to_psychopy_rgb(&quot;#D1A679&quot;)&amp;#10;    &amp;#10;    }&amp;#10;&quot;&quot;&quot;" valType="extendedCode" updates="constant" name="Begin Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
-        <Param val="reward_size_euro = random.choice(reward_sizes_euros)&amp;#10;reward_size_cent = int(reward_size_euro*100)&amp;#10;&amp;#10;bb.sendMarker(val=100+reward_size_cent)&amp;#10;&amp;#10;inner.color = cent_colors[reward_size_cent]&amp;#10;rewardbar.color = cent_colors[reward_size_cent]&amp;#10;&amp;#10;pointer.opacity = 1&amp;#10;pointer_blocker.opacity = 1" valType="extendedCode" updates="constant" name="Begin Routine"/>
+        <Param val="reward_size = random.choice(reward_sizes)&amp;#10;&amp;#10;bb.sendMarker(val=100+reward_size)&amp;#10;&amp;#10;inner.color = reward_size_colors[reward_size]&amp;#10;rewardbar.color = reward_size_colors[reward_size]&amp;#10;&amp;#10;pointer.opacity = 1&amp;#10;pointer_blocker.opacity = 1" valType="extendedCode" updates="constant" name="Begin Routine"/>
         <Param val="Py" valType="str" updates="None" name="Code Type"/>
         <Param val="" valType="extendedCode" updates="constant" name="Each Frame"/>
         <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
@@ -888,7 +811,7 @@
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin Routine"/>
         <Param val="Py" valType="str" updates="None" name="Code Type"/>
-        <Param val="progress_perc = global_clock.getTime()/task_time&amp;#10;&amp;#10;start_angle = np.pi / 2&amp;#10;end_angle = start_angle + 2 * np.pi * (1 - progress_perc)&amp;#10;&amp;#10;theta = np.linspace(start_angle, end_angle, 100)&amp;#10;&amp;#10;vertices = [(radius * np.cos(t), radius * np.sin(t)) for t in theta]&amp;#10;&amp;#10;outline.vertices = vertices" valType="extendedCode" updates="constant" name="Each Frame"/>
+        <Param val="progress_perc = global_clock.getTime()/task_time&amp;#10;&amp;#10;start_angle = np.pi / 2&amp;#10;end_angle = start_angle + 2 * np.pi * max(0, (1 - progress_perc))&amp;#10;&amp;#10;theta = np.linspace(start_angle, end_angle, 100)&amp;#10;&amp;#10;vertices = [(radius * np.cos(t), radius * np.sin(t)) for t in theta]&amp;#10;&amp;#10;outline.vertices = vertices" valType="extendedCode" updates="constant" name="Each Frame"/>
         <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
         <Param val="" valType="extendedCode" updates="constant" name="End Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
@@ -914,23 +837,6 @@
         <Param val="" valType="code" updates="constant" name="stopVal"/>
         <Param val="False" valType="bool" updates="None" name="useWindowParams"/>
       </RoutineSettingsComponent>
-      <CodeComponent name="track_exp_time" plugin="None">
-        <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Begin Experiment"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Begin Routine"/>
-        <Param val="Py" valType="str" updates="None" name="Code Type"/>
-        <Param val="if global_clock.getTime() &gt;= task_time:&amp;#10;    trials.finished = True&amp;#10;    continueRoutine = False" valType="extendedCode" updates="constant" name="Each Frame"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
-        <Param val="" valType="extendedCode" updates="constant" name="End Experiment"/>
-        <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
-        <Param val="" valType="extendedCode" updates="constant" name="End JS Routine"/>
-        <Param val="" valType="extendedCode" updates="constant" name="End Routine"/>
-        <Param val="False" valType="bool" updates="None" name="disabled"/>
-        <Param val="track_exp_time" valType="code" updates="None" name="name"/>
-      </CodeComponent>
       <CodeComponent name="update_searchloc" plugin="None">
         <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
@@ -1035,7 +941,7 @@
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin Routine"/>
         <Param val="Py" valType="str" updates="None" name="Code Type"/>
-        <Param val="progress_perc = global_clock.getTime()/task_time&amp;#10;&amp;#10;start_angle = np.pi / 2&amp;#10;end_angle = start_angle + 2 * np.pi * (1 - progress_perc)&amp;#10;&amp;#10;theta = np.linspace(start_angle, end_angle, 100)&amp;#10;&amp;#10;vertices = [(radius * np.cos(t), radius * np.sin(t)) for t in theta]&amp;#10;&amp;#10;outline.vertices = vertices" valType="extendedCode" updates="constant" name="Each Frame"/>
+        <Param val="progress_perc = global_clock.getTime()/task_time&amp;#10;&amp;#10;start_angle = np.pi / 2&amp;#10;end_angle = start_angle + 2 * np.pi * max(0, (1 - progress_perc))&amp;#10;&amp;#10;theta = np.linspace(start_angle, end_angle, 100)&amp;#10;&amp;#10;vertices = [(radius * np.cos(t), radius * np.sin(t)) for t in theta]&amp;#10;&amp;#10;outline.vertices = vertices" valType="extendedCode" updates="constant" name="Each Frame"/>
         <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
         <Param val="" valType="extendedCode" updates="constant" name="End Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
@@ -1097,7 +1003,7 @@
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
         <Param val="0.0" valType="code" updates="None" name="startVal"/>
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
-        <Param val="0.3" valType="code" updates="constant" name="stopVal"/>
+        <Param val="0.03" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
         <Param val="" valType="str" updates="constant" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
@@ -1128,7 +1034,7 @@
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin Routine"/>
         <Param val="Py" valType="str" updates="None" name="Code Type"/>
-        <Param val="progress_perc = global_clock.getTime()/task_time&amp;#10;&amp;#10;start_angle = np.pi / 2&amp;#10;end_angle = start_angle + 2 * np.pi * (1 - progress_perc)&amp;#10;&amp;#10;theta = np.linspace(start_angle, end_angle, 100)&amp;#10;&amp;#10;vertices = [(radius * np.cos(t), radius * np.sin(t)) for t in theta]&amp;#10;&amp;#10;outline.vertices = vertices" valType="extendedCode" updates="constant" name="Each Frame"/>
+        <Param val="progress_perc = global_clock.getTime()/task_time&amp;#10;&amp;#10;start_angle = np.pi / 2&amp;#10;end_angle = start_angle + 2 * np.pi * max(0, (1 - progress_perc))&amp;#10;&amp;#10;theta = np.linspace(start_angle, end_angle, 100)&amp;#10;&amp;#10;vertices = [(radius * np.cos(t), radius * np.sin(t)) for t in theta]&amp;#10;&amp;#10;outline.vertices = vertices" valType="extendedCode" updates="constant" name="Each Frame"/>
         <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
         <Param val="" valType="extendedCode" updates="constant" name="End Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
@@ -1177,7 +1083,7 @@
         <Param val="" valType="extendedCode" updates="constant" name="Begin Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
-        <Param val="baseline_time = 1.5&amp;#10;jitter          = np.random.uniform(-0.1, +0.1)&amp;#10;baseline_time += jitter" valType="extendedCode" updates="constant" name="Begin Routine"/>
+        <Param val="baseline_time = 0.15&amp;#10;jitter          = np.random.uniform(-0.01, +0.01)&amp;#10;baseline_time += jitter" valType="extendedCode" updates="constant" name="Begin Routine"/>
         <Param val="Py" valType="str" updates="None" name="Code Type"/>
         <Param val="if t &gt; baseline_time:&amp;#10;    continueRoutine = False" valType="extendedCode" updates="constant" name="Each Frame"/>
         <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
@@ -1257,7 +1163,7 @@
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
         <Param val="outline.setOri(pointer_start_angle)&amp;#10;outline.setAutoDraw(True)&amp;#10;&amp;#10;outline_bg.setOri(pointer_start_angle)&amp;#10;outline_bg.setAutoDraw(True)" valType="extendedCode" updates="constant" name="Begin Routine"/>
         <Param val="Py" valType="str" updates="None" name="Code Type"/>
-        <Param val="progress_perc = global_clock.getTime()/task_time&amp;#10;&amp;#10;start_angle = np.pi / 2&amp;#10;end_angle = start_angle + 2 * np.pi * (1 - progress_perc)&amp;#10;&amp;#10;theta = np.linspace(start_angle, end_angle, 100)&amp;#10;radius = pointer_len &amp;#10;vertices = [(radius * np.cos(t), radius * np.sin(t)) for t in theta]&amp;#10;&amp;#10;outline.vertices = vertices&amp;#10;outline.size = (1,1)" valType="extendedCode" updates="constant" name="Each Frame"/>
+        <Param val="progress_perc = global_clock.getTime()/task_time&amp;#10;&amp;#10;start_angle = np.pi / 2&amp;#10;end_angle = start_angle + 2 * np.pi * max(0, (1 - progress_perc))&amp;#10;&amp;#10;theta = np.linspace(start_angle, end_angle, 100)&amp;#10;radius = pointer_len &amp;#10;vertices = [(radius * np.cos(t), radius * np.sin(t)) for t in theta]&amp;#10;&amp;#10;outline.vertices = vertices&amp;#10;outline.size = (1,1)" valType="extendedCode" updates="constant" name="Each Frame"/>
         <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
         <Param val="" valType="extendedCode" updates="constant" name="End Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
@@ -1481,7 +1387,7 @@
         <Param val="False" valType="bool" updates="constant" name="saveStartRoutine"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
-        <Param val="25" valType="code" updates="constant" name="startExpValue"/>
+        <Param val="2" valType="code" updates="constant" name="startExpValue"/>
         <Param val="" valType="code" updates="None" name="startFrameValue"/>
         <Param val="" valType="code" updates="constant" name="startRoutineValue"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
@@ -1581,7 +1487,7 @@
         <Param val="False" valType="bool" updates="constant" name="saveStartRoutine"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
-        <Param val="0.8" valType="code" updates="constant" name="startExpValue"/>
+        <Param val="0.08" valType="code" updates="constant" name="startExpValue"/>
         <Param val="" valType="code" updates="None" name="startFrameValue"/>
         <Param val="" valType="code" updates="constant" name="startRoutineValue"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
@@ -1621,7 +1527,7 @@
         <Param val="False" valType="bool" updates="constant" name="saveStartRoutine"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
-        <Param val="0.1" valType="code" updates="constant" name="startExpValue"/>
+        <Param val="0" valType="code" updates="constant" name="startExpValue"/>
         <Param val="" valType="code" updates="None" name="startFrameValue"/>
         <Param val="" valType="code" updates="constant" name="startRoutineValue"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
@@ -1730,10 +1636,10 @@
         <Param val="" valType="code" updates="constant" name="stopVal"/>
         <Param val="False" valType="bool" updates="None" name="syncScreenRefresh"/>
       </VariableComponent>
-      <VariableComponent name="reward_sizes_euros" plugin="None">
+      <VariableComponent name="reward_sizes" plugin="None">
         <Param val="False" valType="bool" updates="None" name="disabled"/>
         <Param val="" valType="code" updates="None" name="durationEstim"/>
-        <Param val="reward_sizes_euros" valType="code" updates="None" name="name"/>
+        <Param val="reward_sizes" valType="code" updates="None" name="name"/>
         <Param val="False" valType="bool" updates="constant" name="saveEndExp"/>
         <Param val="True" valType="bool" updates="constant" name="saveEndRoutine"/>
         <Param val="never" valType="str" updates="constant" name="saveFrameValue"/>
@@ -1741,27 +1647,7 @@
         <Param val="False" valType="bool" updates="constant" name="saveStartRoutine"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
-        <Param val="[0.02, 0.05, 0.10]" valType="code" updates="constant" name="startExpValue"/>
-        <Param val="" valType="code" updates="None" name="startFrameValue"/>
-        <Param val="" valType="code" updates="constant" name="startRoutineValue"/>
-        <Param val="time (s)" valType="str" updates="None" name="startType"/>
-        <Param val="" valType="code" updates="None" name="startVal"/>
-        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
-        <Param val="" valType="code" updates="constant" name="stopVal"/>
-        <Param val="False" valType="bool" updates="None" name="syncScreenRefresh"/>
-      </VariableComponent>
-      <VariableComponent name="money_amount" plugin="None">
-        <Param val="False" valType="bool" updates="None" name="disabled"/>
-        <Param val="" valType="code" updates="None" name="durationEstim"/>
-        <Param val="money_amount" valType="code" updates="None" name="name"/>
-        <Param val="False" valType="bool" updates="constant" name="saveEndExp"/>
-        <Param val="True" valType="bool" updates="constant" name="saveEndRoutine"/>
-        <Param val="never" valType="str" updates="constant" name="saveFrameValue"/>
-        <Param val="False" valType="bool" updates="constant" name="saveStartExp"/>
-        <Param val="False" valType="bool" updates="constant" name="saveStartRoutine"/>
-        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
-        <Param val="" valType="code" updates="None" name="startEstim"/>
-        <Param val="0" valType="code" updates="constant" name="startExpValue"/>
+        <Param val="[1, 2, 3]" valType="code" updates="constant" name="startExpValue"/>
         <Param val="" valType="code" updates="None" name="startFrameValue"/>
         <Param val="" valType="code" updates="constant" name="startRoutineValue"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
@@ -1790,26 +1676,6 @@
         <Param val="" valType="code" updates="constant" name="stopVal"/>
         <Param val="False" valType="bool" updates="None" name="syncScreenRefresh"/>
       </VariableComponent>
-      <VariableComponent name="break_pending" plugin="None">
-        <Param val="False" valType="bool" updates="None" name="disabled"/>
-        <Param val="" valType="code" updates="None" name="durationEstim"/>
-        <Param val="break_pending" valType="code" updates="None" name="name"/>
-        <Param val="False" valType="bool" updates="constant" name="saveEndExp"/>
-        <Param val="True" valType="bool" updates="constant" name="saveEndRoutine"/>
-        <Param val="never" valType="str" updates="constant" name="saveFrameValue"/>
-        <Param val="False" valType="bool" updates="constant" name="saveStartExp"/>
-        <Param val="False" valType="bool" updates="constant" name="saveStartRoutine"/>
-        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
-        <Param val="" valType="code" updates="None" name="startEstim"/>
-        <Param val="True" valType="code" updates="constant" name="startExpValue"/>
-        <Param val="" valType="code" updates="None" name="startFrameValue"/>
-        <Param val="" valType="code" updates="constant" name="startRoutineValue"/>
-        <Param val="time (s)" valType="str" updates="None" name="startType"/>
-        <Param val="" valType="code" updates="None" name="startVal"/>
-        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
-        <Param val="" valType="code" updates="constant" name="stopVal"/>
-        <Param val="False" valType="bool" updates="None" name="syncScreenRefresh"/>
-      </VariableComponent>
       <VariableComponent name="n_blocks" plugin="None">
         <Param val="False" valType="bool" updates="None" name="disabled"/>
         <Param val="" valType="code" updates="None" name="durationEstim"/>
@@ -1821,27 +1687,7 @@
         <Param val="False" valType="bool" updates="constant" name="saveStartRoutine"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
-        <Param val="4" valType="code" updates="constant" name="startExpValue"/>
-        <Param val="" valType="code" updates="None" name="startFrameValue"/>
-        <Param val="" valType="code" updates="constant" name="startRoutineValue"/>
-        <Param val="time (s)" valType="str" updates="None" name="startType"/>
-        <Param val="" valType="code" updates="None" name="startVal"/>
-        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
-        <Param val="" valType="code" updates="constant" name="stopVal"/>
-        <Param val="False" valType="bool" updates="None" name="syncScreenRefresh"/>
-      </VariableComponent>
-      <VariableComponent name="breaks_given" plugin="None">
-        <Param val="False" valType="bool" updates="None" name="disabled"/>
-        <Param val="" valType="code" updates="None" name="durationEstim"/>
-        <Param val="breaks_given" valType="code" updates="None" name="name"/>
-        <Param val="False" valType="bool" updates="constant" name="saveEndExp"/>
-        <Param val="True" valType="bool" updates="constant" name="saveEndRoutine"/>
-        <Param val="never" valType="str" updates="constant" name="saveFrameValue"/>
-        <Param val="False" valType="bool" updates="constant" name="saveStartExp"/>
-        <Param val="False" valType="bool" updates="constant" name="saveStartRoutine"/>
-        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
-        <Param val="" valType="code" updates="None" name="startEstim"/>
-        <Param val="0" valType="code" updates="constant" name="startExpValue"/>
+        <Param val="1" valType="code" updates="constant" name="startExpValue"/>
         <Param val="" valType="code" updates="None" name="startFrameValue"/>
         <Param val="" valType="code" updates="constant" name="startRoutineValue"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
@@ -1884,23 +1730,6 @@
         <Param val="False" valType="bool" updates="None" name="disabled"/>
         <Param val="derive_vars" valType="code" updates="None" name="name"/>
       </CodeComponent>
-      <CodeComponent name="start_exp_counter" plugin="None">
-        <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Begin Experiment"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
-        <Param val="global_clock = new util.Clock();&amp;#10;task_time_limit = (task_time_minutes * 60);&amp;#10;" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Begin Routine"/>
-        <Param val="Py" valType="str" updates="None" name="Code Type"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Each Frame"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
-        <Param val="" valType="extendedCode" updates="constant" name="End Experiment"/>
-        <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
-        <Param val="" valType="extendedCode" updates="constant" name="End JS Routine"/>
-        <Param val="global_clock = core.Clock()&amp;#10;task_start_time = global_clock.getTime()&amp;#10;task_time = task_time_minutes * 60  # convert to seconds" valType="extendedCode" updates="constant" name="End Routine"/>
-        <Param val="False" valType="bool" updates="None" name="disabled"/>
-        <Param val="start_exp_counter" valType="code" updates="None" name="name"/>
-      </CodeComponent>
       <VariableComponent name="element_color" plugin="None">
         <Param val="False" valType="bool" updates="None" name="disabled"/>
         <Param val="" valType="code" updates="None" name="durationEstim"/>
@@ -1941,26 +1770,6 @@
         <Param val="" valType="code" updates="constant" name="stopVal"/>
         <Param val="False" valType="bool" updates="None" name="syncScreenRefresh"/>
       </VariableComponent>
-      <VariableComponent name="progress_perc" plugin="None">
-        <Param val="False" valType="bool" updates="None" name="disabled"/>
-        <Param val="" valType="code" updates="None" name="durationEstim"/>
-        <Param val="progress_perc" valType="code" updates="None" name="name"/>
-        <Param val="False" valType="bool" updates="constant" name="saveEndExp"/>
-        <Param val="True" valType="bool" updates="constant" name="saveEndRoutine"/>
-        <Param val="never" valType="str" updates="constant" name="saveFrameValue"/>
-        <Param val="False" valType="bool" updates="constant" name="saveStartExp"/>
-        <Param val="False" valType="bool" updates="constant" name="saveStartRoutine"/>
-        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
-        <Param val="" valType="code" updates="None" name="startEstim"/>
-        <Param val="0" valType="code" updates="constant" name="startExpValue"/>
-        <Param val="" valType="code" updates="None" name="startFrameValue"/>
-        <Param val="" valType="code" updates="constant" name="startRoutineValue"/>
-        <Param val="time (s)" valType="str" updates="None" name="startType"/>
-        <Param val="" valType="code" updates="None" name="startVal"/>
-        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
-        <Param val="" valType="code" updates="constant" name="stopVal"/>
-        <Param val="False" valType="bool" updates="None" name="syncScreenRefresh"/>
-      </VariableComponent>
       <CodeComponent name="init_EEG" plugin="None">
         <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
@@ -1989,7 +1798,7 @@
         <Param val="False" valType="bool" updates="constant" name="saveStartRoutine"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
-        <Param val="30" valType="code" updates="constant" name="startExpValue"/>
+        <Param val="3" valType="code" updates="constant" name="startExpValue"/>
         <Param val="" valType="code" updates="None" name="startFrameValue"/>
         <Param val="" valType="code" updates="constant" name="startRoutineValue"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
@@ -2014,6 +1823,23 @@
         <Param val="" valType="extendedCode" updates="constant" name="End Routine"/>
         <Param val="False" valType="bool" updates="None" name="disabled"/>
         <Param val="surpress_logging" valType="code" updates="None" name="name"/>
+      </CodeComponent>
+      <CodeComponent name="init_counters" plugin="None">
+        <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
+        <Param val="score = 0&amp;#10;score_computer = 0&amp;#10;progress_perc = 0&amp;#10;breaks_given = 0&amp;#10;&amp;#10;# decrepit (should be safe to delete)&amp;#10;money_amount = 0" valType="extendedCode" updates="constant" name="Begin Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin Routine"/>
+        <Param val="Py" valType="str" updates="None" name="Code Type"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Each Frame"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End JS Routine"/>
+        <Param val="global_clock = core.Clock()&amp;#10;task_start_time = global_clock.getTime()&amp;#10;task_time = task_time_minutes * 60  # convert to seconds" valType="extendedCode" updates="constant" name="End Routine"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="init_counters" valType="code" updates="None" name="name"/>
       </CodeComponent>
     </Routine>
     <Routine name="general_instruction">
@@ -2078,12 +1904,133 @@
         <Param val="True" valType="bool" updates="constant" name="syncScreenRefresh"/>
       </KeyboardComponent>
     </Routine>
+    <Routine name="break_relax">
+      <RoutineSettingsComponent name="break_relax" plugin="None">
+        <Param val="none" valType="str" updates="None" name="backgroundFit"/>
+        <Param val="" valType="str" updates="None" name="backgroundImg"/>
+        <Param val="$[0,0,0]" valType="color" updates="None" name="color"/>
+        <Param val="rgb" valType="str" updates="None" name="colorSpace"/>
+        <Param val="" valType="str" updates="constant" name="desc"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="" valType="code" updates="None" name="durationEstim"/>
+        <Param val="break_relax" valType="code" updates="None" name="name"/>
+        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="" valType="code" updates="constant" name="skipIf"/>
+        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
+        <Param val="" valType="code" updates="constant" name="stopVal"/>
+        <Param val="False" valType="bool" updates="None" name="useWindowParams"/>
+      </RoutineSettingsComponent>
+      <TextComponent name="break_text" plugin="None">
+        <Param val="$element_color" valType="color" updates="constant" name="color"/>
+        <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
+        <Param val="1" valType="num" updates="constant" name="contrast"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="" valType="code" updates="None" name="durationEstim"/>
+        <Param val="None" valType="str" updates="constant" name="flip"/>
+        <Param val="Open Sans" valType="str" updates="constant" name="font"/>
+        <Param val="LTR" valType="str" updates="None" name="languageStyle"/>
+        <Param val="letter_height" valType="num" updates="constant" name="letterHeight"/>
+        <Param val="break_text" valType="code" updates="None" name="name"/>
+        <Param val="" valType="num" updates="constant" name="opacity"/>
+        <Param val="0" valType="num" updates="constant" name="ori"/>
+        <Param val="(0, 0)" valType="list" updates="constant" name="pos"/>
+        <Param val="False" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="" valType="code" updates="None" name="startEstim"/>
+        <Param val="time (s)" valType="str" updates="None" name="startType"/>
+        <Param val="0.0" valType="code" updates="None" name="startVal"/>
+        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
+        <Param val="$break_dur" valType="code" updates="constant" name="stopVal"/>
+        <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
+        <Param val="" valType="str" updates="set every frame" name="text"/>
+        <Param val="from exp settings" valType="str" updates="None" name="units"/>
+        <Param val="" valType="code" updates="None" name="validator"/>
+        <Param val="" valType="num" updates="constant" name="wrapWidth"/>
+      </TextComponent>
+      <TextComponent name="score_text" plugin="None">
+        <Param val="white" valType="color" updates="constant" name="color"/>
+        <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
+        <Param val="1" valType="num" updates="constant" name="contrast"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="" valType="code" updates="None" name="durationEstim"/>
+        <Param val="None" valType="str" updates="constant" name="flip"/>
+        <Param val="Open Sans" valType="str" updates="constant" name="font"/>
+        <Param val="LTR" valType="str" updates="None" name="languageStyle"/>
+        <Param val="letter_height" valType="num" updates="constant" name="letterHeight"/>
+        <Param val="score_text" valType="code" updates="None" name="name"/>
+        <Param val="" valType="num" updates="constant" name="opacity"/>
+        <Param val="0" valType="num" updates="constant" name="ori"/>
+        <Param val="(0, 0)" valType="list" updates="constant" name="pos"/>
+        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="" valType="code" updates="None" name="startEstim"/>
+        <Param val="time (s)" valType="str" updates="None" name="startType"/>
+        <Param val="0.0" valType="code" updates="None" name="startVal"/>
+        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
+        <Param val="$break_dur" valType="code" updates="constant" name="stopVal"/>
+        <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
+        <Param val="" valType="str" updates="set every frame" name="text"/>
+        <Param val="from exp settings" valType="str" updates="None" name="units"/>
+        <Param val="" valType="num" updates="constant" name="wrapWidth"/>
+      </TextComponent>
+      <CodeComponent name="update_break_text" plugin="None">
+        <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
+        <Param val="&amp;#10;    " valType="extendedCode" updates="constant" name="Begin Routine"/>
+        <Param val="Py" valType="str" updates="None" name="Code Type"/>
+        <Param val="&quot;&quot;&quot; # TODO alignment did not work.&amp;#10;break_text.anchorText = 'center'&amp;#10;score_text.anchorText = 'center'&amp;#10;break_text.alignText = 'center'&amp;#10;score_text.alignText = 'right'&amp;#10;&amp;#10;break_text.text = 'Short break!\n\n\n\n\nContinuing in...\n' + str(int(break_dur + 1 - t))&amp;#10;score_text.text = f'\n\nYour score: {score}\nComputer\'s score: {score_computer}\n\n\n'&amp;#10;&amp;#10;text_width = score_text.size[0]&amp;#10;score_text.pos = (-text_width / 4, 0) # guesstimated division number, could not understand maths behind it - and still does not look good. drop.&amp;#10;&amp;#10;#&quot;&quot;&quot;&amp;#10;&amp;#10;break_text.text = f'Short break!\n\nYour score: \n{score}\nComputer\'s score: \n{score_computer}\n\nContinuing in...\n' + str(int(break_dur + 1 - t))" valType="extendedCode" updates="constant" name="Each Frame"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End JS Routine"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End Routine"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="update_break_text" valType="code" updates="None" name="name"/>
+      </CodeComponent>
+      <CodeComponent name="check_if_last" plugin="None">
+        <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
+        <Param val="breaks_given += 1&amp;#10;&amp;#10;if int(breaks_given) == int(n_blocks):&amp;#10;    continueRoutine = False&amp;#10;    breaks.finished = True" valType="extendedCode" updates="constant" name="Begin Routine"/>
+        <Param val="Py" valType="str" updates="None" name="Code Type"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Each Frame"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End JS Routine"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End Routine"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="check_if_last" valType="code" updates="None" name="name"/>
+      </CodeComponent>
+      <CodeComponent name="hide_pointer_outline" plugin="None">
+        <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
+        <Param val="outline.opacity = 0&amp;#10;outline_bg.opacity = 0&amp;#10;rewardbar.opacity = 0" valType="extendedCode" updates="constant" name="Begin Routine"/>
+        <Param val="Py" valType="str" updates="None" name="Code Type"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Each Frame"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End JS Routine"/>
+        <Param val="pointer.opacity = 1&amp;#10;pointer_blocker.opacity = 1&amp;#10;outline.opacity = 1&amp;#10;outline_bg.opacity = 1&amp;#10;cross.opacity = 1" valType="extendedCode" updates="constant" name="End Routine"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="hide_pointer_outline" valType="code" updates="None" name="name"/>
+      </CodeComponent>
+    </Routine>
   </Routines>
   <Flow>
     <Routine name="init_vars"/>
+    <Routine name="general_instruction"/>
     <Routine name="resting_state"/>
     <Routine name="TUS"/>
     <Routine name="resting_state"/>
+    <Routine name="task_instruction"/>
     <LoopInitiator loopType="TrialHandler" name="breaks">
       <Param name="Selected rows" updates="None" val="" valType="str"/>
       <Param name="conditions" updates="None" val="None" valType="str"/>
@@ -2112,7 +2059,7 @@
     <Routine name="hold"/>
     <Routine name="reward_reveal"/>
     <LoopTerminator name="trials"/>
-    <Routine name="break_rest"/>
+    <Routine name="break_relax"/>
     <LoopTerminator name="breaks"/>
     <Routine name="goodbye_screen"/>
   </Flow>
