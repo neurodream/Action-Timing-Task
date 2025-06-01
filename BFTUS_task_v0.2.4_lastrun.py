@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2023.2.3),
-    on June 01, 2025, at 12:32
+    on June 01, 2025, at 12:51
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -326,7 +326,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
     snr_db_levels = [34] # [15, 23, 34, 51, 76]
     snr_db_levelsContainer = []
     # Set experiment start values for variable component task_time_minutes
-    task_time_minutes = 25
+    task_time_minutes = 2
     task_time_minutesContainer = []
     # Set experiment start values for variable component n_samples
     n_samples = 9
@@ -371,7 +371,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
     resting_dur = 1
     resting_durContainer = []
     # Set experiment start values for variable component n_blocks
-    n_blocks = 3
+    n_blocks = 1
     n_blocksContainer = []
     # Run 'Begin Experiment' code from derive_vars
     reward_chance_endpoints = np.linspace(0, 1, n_reward_chance_endpoints)
@@ -588,7 +588,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
         pos=(0, 0), height=0.05, wrapWidth=None, ori=0.0, 
         color='white', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
-        depth=-2.0);
+        depth=-1.0);
     give_response = keyboard.Keyboard()
     
     # --- Initialize components for Routine "hold" ---
@@ -1387,7 +1387,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
                 progress_perc = global_clock.getTime()/task_time
                 
                 start_angle = np.pi / 2
-                end_angle = start_angle + 2 * np.pi * (1 - progress_perc)
+                end_angle = start_angle + 2 * np.pi * max(0, (1 - progress_perc))
                 
                 theta = np.linspace(start_angle, end_angle, 100)
                 radius = pointer_len 
@@ -1508,7 +1508,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
                 progress_perc = global_clock.getTime()/task_time
                 
                 start_angle = np.pi / 2
-                end_angle = start_angle + 2 * np.pi * (1 - progress_perc)
+                end_angle = start_angle + 2 * np.pi * max(0, (1 - progress_perc))
                 
                 theta = np.linspace(start_angle, end_angle, 100)
                 
@@ -1629,10 +1629,6 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
                 tThisFlipGlobal = win.getFutureFlipTime(clock=None)
                 frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
                 # update/draw components on each frame
-                # Run 'Each Frame' code from track_exp_time
-                if global_clock.getTime() >= task_time:
-                    trials.finished = True
-                    continueRoutine = False
                 # Run 'Each Frame' code from update_searchloc
                 pointer.ori   = pointer_start_angle + deg_per_sec * t          # continuous CCW sweep
                 pointer_blocker.ori   = pointer_start_angle + deg_per_sec * t          
@@ -1718,7 +1714,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
                 progress_perc = global_clock.getTime()/task_time
                 
                 start_angle = np.pi / 2
-                end_angle = start_angle + 2 * np.pi * (1 - progress_perc)
+                end_angle = start_angle + 2 * np.pi * max(0, (1 - progress_perc))
                 
                 theta = np.linspace(start_angle, end_angle, 100)
                 
@@ -1829,7 +1825,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
                 progress_perc = global_clock.getTime()/task_time
                 
                 start_angle = np.pi / 2
-                end_angle = start_angle + 2 * np.pi * (1 - progress_perc)
+                end_angle = start_angle + 2 * np.pi * max(0, (1 - progress_perc))
                 
                 theta = np.linspace(start_angle, end_angle, 100)
                 
@@ -1953,7 +1949,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
                 progress_perc = global_clock.getTime()/task_time
                 
                 start_angle = np.pi / 2
-                end_angle = start_angle + 2 * np.pi * (1 - progress_perc)
+                end_angle = start_angle + 2 * np.pi * max(0, (1 - progress_perc))
                 
                 theta = np.linspace(start_angle, end_angle, 100)
                 
@@ -2001,6 +1997,9 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
             # Run 'End Routine' code from hide_rewardbar
             rewardbar.opacity = 1
             cross.opacity = 1
+            # Run 'End Routine' code from track_exp_time
+            if global_clock.getTime() >= task_time:
+                trials.finished = True
             # the Routine "reward_reveal" was not non-slip safe, so reset the non-slip timer
             routineTimer.reset()
             thisExp.nextEntry()
@@ -2027,6 +2026,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
         # Run 'Begin Routine' code from hide_pointer_outline
         outline.opacity = 0
         outline_bg.opacity = 0
+        rewardbar.opacity = 0
         # keep track of which components have finished
         break_relaxComponents = [break_text, score_text]
         for thisComponent in break_relaxComponents:

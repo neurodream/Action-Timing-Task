@@ -274,7 +274,7 @@
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin Routine"/>
         <Param val="Py" valType="str" updates="None" name="Code Type"/>
-        <Param val="progress_perc = global_clock.getTime()/task_time&amp;#10;&amp;#10;start_angle = np.pi / 2&amp;#10;end_angle = start_angle + 2 * np.pi * (1 - progress_perc)&amp;#10;&amp;#10;theta = np.linspace(start_angle, end_angle, 100)&amp;#10;&amp;#10;vertices = [(radius * np.cos(t), radius * np.sin(t)) for t in theta]&amp;#10;&amp;#10;outline.vertices = vertices" valType="extendedCode" updates="constant" name="Each Frame"/>
+        <Param val="progress_perc = global_clock.getTime()/task_time&amp;#10;&amp;#10;start_angle = np.pi / 2&amp;#10;end_angle = start_angle + 2 * np.pi * max(0, (1 - progress_perc))&amp;#10;&amp;#10;theta = np.linspace(start_angle, end_angle, 100)&amp;#10;&amp;#10;vertices = [(radius * np.cos(t), radius * np.sin(t)) for t in theta]&amp;#10;&amp;#10;outline.vertices = vertices" valType="extendedCode" updates="constant" name="Each Frame"/>
         <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
         <Param val="" valType="extendedCode" updates="constant" name="End Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
@@ -316,6 +316,23 @@
         <Param val="rewardbar.opacity = 1&amp;#10;cross.opacity = 1" valType="extendedCode" updates="constant" name="End Routine"/>
         <Param val="False" valType="bool" updates="None" name="disabled"/>
         <Param val="hide_rewardbar" valType="code" updates="None" name="name"/>
+      </CodeComponent>
+      <CodeComponent name="track_exp_time" plugin="None">
+        <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin Routine"/>
+        <Param val="Py" valType="str" updates="None" name="Code Type"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Each Frame"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End JS Routine"/>
+        <Param val="if global_clock.getTime() &gt;= task_time:&amp;#10;    trials.finished = True" valType="extendedCode" updates="constant" name="End Routine"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="track_exp_time" valType="code" updates="None" name="name"/>
       </CodeComponent>
     </Routine>
     <Routine name="goodbye_screen">
@@ -794,7 +811,7 @@
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin Routine"/>
         <Param val="Py" valType="str" updates="None" name="Code Type"/>
-        <Param val="progress_perc = global_clock.getTime()/task_time&amp;#10;&amp;#10;start_angle = np.pi / 2&amp;#10;end_angle = start_angle + 2 * np.pi * (1 - progress_perc)&amp;#10;&amp;#10;theta = np.linspace(start_angle, end_angle, 100)&amp;#10;&amp;#10;vertices = [(radius * np.cos(t), radius * np.sin(t)) for t in theta]&amp;#10;&amp;#10;outline.vertices = vertices" valType="extendedCode" updates="constant" name="Each Frame"/>
+        <Param val="progress_perc = global_clock.getTime()/task_time&amp;#10;&amp;#10;start_angle = np.pi / 2&amp;#10;end_angle = start_angle + 2 * np.pi * max(0, (1 - progress_perc))&amp;#10;&amp;#10;theta = np.linspace(start_angle, end_angle, 100)&amp;#10;&amp;#10;vertices = [(radius * np.cos(t), radius * np.sin(t)) for t in theta]&amp;#10;&amp;#10;outline.vertices = vertices" valType="extendedCode" updates="constant" name="Each Frame"/>
         <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
         <Param val="" valType="extendedCode" updates="constant" name="End Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
@@ -820,23 +837,6 @@
         <Param val="" valType="code" updates="constant" name="stopVal"/>
         <Param val="False" valType="bool" updates="None" name="useWindowParams"/>
       </RoutineSettingsComponent>
-      <CodeComponent name="track_exp_time" plugin="None">
-        <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Begin Experiment"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Begin Routine"/>
-        <Param val="Py" valType="str" updates="None" name="Code Type"/>
-        <Param val="if global_clock.getTime() &gt;= task_time:&amp;#10;    trials.finished = True&amp;#10;    continueRoutine = False" valType="extendedCode" updates="constant" name="Each Frame"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
-        <Param val="" valType="extendedCode" updates="constant" name="End Experiment"/>
-        <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
-        <Param val="" valType="extendedCode" updates="constant" name="End JS Routine"/>
-        <Param val="" valType="extendedCode" updates="constant" name="End Routine"/>
-        <Param val="False" valType="bool" updates="None" name="disabled"/>
-        <Param val="track_exp_time" valType="code" updates="None" name="name"/>
-      </CodeComponent>
       <CodeComponent name="update_searchloc" plugin="None">
         <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
@@ -941,7 +941,7 @@
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin Routine"/>
         <Param val="Py" valType="str" updates="None" name="Code Type"/>
-        <Param val="progress_perc = global_clock.getTime()/task_time&amp;#10;&amp;#10;start_angle = np.pi / 2&amp;#10;end_angle = start_angle + 2 * np.pi * (1 - progress_perc)&amp;#10;&amp;#10;theta = np.linspace(start_angle, end_angle, 100)&amp;#10;&amp;#10;vertices = [(radius * np.cos(t), radius * np.sin(t)) for t in theta]&amp;#10;&amp;#10;outline.vertices = vertices" valType="extendedCode" updates="constant" name="Each Frame"/>
+        <Param val="progress_perc = global_clock.getTime()/task_time&amp;#10;&amp;#10;start_angle = np.pi / 2&amp;#10;end_angle = start_angle + 2 * np.pi * max(0, (1 - progress_perc))&amp;#10;&amp;#10;theta = np.linspace(start_angle, end_angle, 100)&amp;#10;&amp;#10;vertices = [(radius * np.cos(t), radius * np.sin(t)) for t in theta]&amp;#10;&amp;#10;outline.vertices = vertices" valType="extendedCode" updates="constant" name="Each Frame"/>
         <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
         <Param val="" valType="extendedCode" updates="constant" name="End Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
@@ -1034,7 +1034,7 @@
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin Routine"/>
         <Param val="Py" valType="str" updates="None" name="Code Type"/>
-        <Param val="progress_perc = global_clock.getTime()/task_time&amp;#10;&amp;#10;start_angle = np.pi / 2&amp;#10;end_angle = start_angle + 2 * np.pi * (1 - progress_perc)&amp;#10;&amp;#10;theta = np.linspace(start_angle, end_angle, 100)&amp;#10;&amp;#10;vertices = [(radius * np.cos(t), radius * np.sin(t)) for t in theta]&amp;#10;&amp;#10;outline.vertices = vertices" valType="extendedCode" updates="constant" name="Each Frame"/>
+        <Param val="progress_perc = global_clock.getTime()/task_time&amp;#10;&amp;#10;start_angle = np.pi / 2&amp;#10;end_angle = start_angle + 2 * np.pi * max(0, (1 - progress_perc))&amp;#10;&amp;#10;theta = np.linspace(start_angle, end_angle, 100)&amp;#10;&amp;#10;vertices = [(radius * np.cos(t), radius * np.sin(t)) for t in theta]&amp;#10;&amp;#10;outline.vertices = vertices" valType="extendedCode" updates="constant" name="Each Frame"/>
         <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
         <Param val="" valType="extendedCode" updates="constant" name="End Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
@@ -1163,7 +1163,7 @@
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
         <Param val="outline.setOri(pointer_start_angle)&amp;#10;outline.setAutoDraw(True)&amp;#10;&amp;#10;outline_bg.setOri(pointer_start_angle)&amp;#10;outline_bg.setAutoDraw(True)" valType="extendedCode" updates="constant" name="Begin Routine"/>
         <Param val="Py" valType="str" updates="None" name="Code Type"/>
-        <Param val="progress_perc = global_clock.getTime()/task_time&amp;#10;&amp;#10;start_angle = np.pi / 2&amp;#10;end_angle = start_angle + 2 * np.pi * (1 - progress_perc)&amp;#10;&amp;#10;theta = np.linspace(start_angle, end_angle, 100)&amp;#10;radius = pointer_len &amp;#10;vertices = [(radius * np.cos(t), radius * np.sin(t)) for t in theta]&amp;#10;&amp;#10;outline.vertices = vertices&amp;#10;outline.size = (1,1)" valType="extendedCode" updates="constant" name="Each Frame"/>
+        <Param val="progress_perc = global_clock.getTime()/task_time&amp;#10;&amp;#10;start_angle = np.pi / 2&amp;#10;end_angle = start_angle + 2 * np.pi * max(0, (1 - progress_perc))&amp;#10;&amp;#10;theta = np.linspace(start_angle, end_angle, 100)&amp;#10;radius = pointer_len &amp;#10;vertices = [(radius * np.cos(t), radius * np.sin(t)) for t in theta]&amp;#10;&amp;#10;outline.vertices = vertices&amp;#10;outline.size = (1,1)" valType="extendedCode" updates="constant" name="Each Frame"/>
         <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
         <Param val="" valType="extendedCode" updates="constant" name="End Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
@@ -1387,7 +1387,7 @@
         <Param val="False" valType="bool" updates="constant" name="saveStartRoutine"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
-        <Param val="25" valType="code" updates="constant" name="startExpValue"/>
+        <Param val="2" valType="code" updates="constant" name="startExpValue"/>
         <Param val="" valType="code" updates="None" name="startFrameValue"/>
         <Param val="" valType="code" updates="constant" name="startRoutineValue"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
@@ -1687,7 +1687,7 @@
         <Param val="False" valType="bool" updates="constant" name="saveStartRoutine"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
-        <Param val="3" valType="code" updates="constant" name="startExpValue"/>
+        <Param val="1" valType="code" updates="constant" name="startExpValue"/>
         <Param val="" valType="code" updates="None" name="startFrameValue"/>
         <Param val="" valType="code" updates="constant" name="startRoutineValue"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
@@ -2011,7 +2011,7 @@
         <Param val="" valType="extendedCode" updates="constant" name="Begin Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
-        <Param val="outline.opacity = 0&amp;#10;outline_bg.opacity = 0" valType="extendedCode" updates="constant" name="Begin Routine"/>
+        <Param val="outline.opacity = 0&amp;#10;outline_bg.opacity = 0&amp;#10;rewardbar.opacity = 0" valType="extendedCode" updates="constant" name="Begin Routine"/>
         <Param val="Py" valType="str" updates="None" name="Code Type"/>
         <Param val="" valType="extendedCode" updates="constant" name="Each Frame"/>
         <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
