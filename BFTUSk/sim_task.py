@@ -8,7 +8,11 @@ import pandas as pd
 
 
 
-def run_sim(verbose=False):
+def run_sim(strategy="random", exploit_kill=True, verbose=False):
+
+    """
+    strategy: one of: "early, "middle", "late", "random"
+    """
 
     rows = []
 
@@ -27,12 +31,10 @@ def run_sim(verbose=False):
     # derived vars
     reward_chance_endpoints = np.linspace(0, 1, n_reward_chance_endpoints)
     block_dur = task_time//n_blocks
-    sweep_span = 360
     # Set experiment start values for variable component break_dur
     break_dur = 60
     # init_counters
     score = 0
-    score_computer = 0
     breaks_given = 0
     
     
@@ -95,7 +97,13 @@ def run_sim(verbose=False):
             noise          = np.random.normal(0,
                                  np.sqrt(np.mean(p_lin**2)) / (10**(snr_db/20)),
                                  p_lin.shape)
-            p_noisy        = np.clip(p_lin + noise, 0, 1)
+            if exploit_kill:
+                x       = np.linspace(0, 1, n_samples)          # 0 … last flash
+                alpha   = 2.5                                   # >1 → slow start, fast finish
+                p_curve = 0.5 + (p_end - 0.5) * x**alpha        # concave ramp
+                p_noisy        = np.clip(p_curve + noise, 0, 1)
+            else:
+                p_noisy        = np.clip(p_lin + noise, 0, 1)
             
             # ---------- flash schedule ----------
             on_dur        = dec_win_base + np.random.uniform(-dec_win_jitter_rng,
@@ -111,8 +119,15 @@ def run_sim(verbose=False):
             
             sweep_dur = flash_onsets[-1] + soa[-1]
             
-            # random answer
-            choice_time = np.random.uniform(0, sweep_dur)
+            if strategy == "random":
+                # random answer
+                choice_time = np.random.uniform(0, sweep_dur)
+            if strategy == "early":
+                choice_time = 1
+            if strategy == "middle":
+                choice_time = sweep_dur/2
+            if strategy == "late":
+                choice_time = sweep_dur - 1
 
             routine_t = 0
             while True:
@@ -196,7 +211,8 @@ def run_sim(verbose=False):
                 reward=reward,
                 reward_size=reward_size,
                 reward_chance_endpoint=p_end,
-                snr_db=snr_db
+                snr_db=snr_db,
+                score=score
             ))
 
             
