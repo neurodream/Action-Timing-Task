@@ -2,8 +2,8 @@
 action timing task for the BFTUS study
 
 ## how to use analysis code
-- open command line in directory; ´pip install -e .´
-- open and run the files in ´scripts/´
+- open command line in directory; `pip install -e .`
+- open and run the files in `scripts/`
 
 ## good practice for working on task
 - try to implement in visual builder; use ´BFTUS_task.psyexp´
