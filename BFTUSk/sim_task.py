@@ -107,7 +107,7 @@ def run_sim(strategy="random", exploit_kill=True, verbose=False, float_vals=None
             
             # ---------- probability path ----------
             p_end          = np.random.choice(reward_chance_endpoints)
-            p_lin          = np.linspace(0.5, p_end, n_samples)
+            p_lin          = np.linspace(0.3, p_end, n_samples) #adjusted to 30% from 50%; accomadating change for exploit_kill
             snr_db         = np.random.choice(snr_db_levels)
             noise          = np.random.normal(0,
                                  np.sqrt(np.mean(p_lin**2)) / (10**(snr_db/20)),
@@ -115,7 +115,7 @@ def run_sim(strategy="random", exploit_kill=True, verbose=False, float_vals=None
             if exploit_kill:
                 x       = np.linspace(0, 1, n_samples)          # 0 … last flash
                 alpha   = 2.5                                   # >1 → slow start, fast finish
-                p_curve = 0.5 + (p_end - 0.5) * x**alpha        # concave ramp
+                p_curve = 0.3 + (p_end - 0.3) * x**alpha        # concave ramp
                 p_noisy        = np.clip(p_curve + noise, 0, 1)
             else:
                 p_noisy        = np.clip(p_lin + noise, 0, 1)
