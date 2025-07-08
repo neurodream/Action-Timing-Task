@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2023.2.3),
-    on July 08, 2025, at 13:35
+    on July 08, 2025, at 18:49
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -568,13 +568,20 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
     """
     
     # --- Initialize components for Routine "decision_window" ---
+    trial_instruction_text = visual.TextStim(win=win, name='trial_instruction_text',
+        text=None,
+        font='Open Sans',
+        pos=[0,0], height=letter_height, wrapWidth=None, ori=0.0, 
+        color='white', colorSpace='rgb', opacity=None, 
+        languageStyle='LTR',
+        depth=0.0);
     DEBUG = visual.TextStim(win=win, name='DEBUG',
         text=None,
         font='Open Sans',
         pos=(0, 0), height=0.05, wrapWidth=None, ori=0.0, 
         color='white', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
-        depth=-1.0);
+        depth=-2.0);
     give_response = keyboard.Keyboard()
     
     # --- Initialize components for Routine "hold" ---
@@ -594,6 +601,13 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
         color=element_color, colorSpace='rgb', opacity=1.0, 
         languageStyle='LTR',
         depth=0.0);
+    feedback_text = visual.TextStim(win=win, name='feedback_text',
+        text=None,
+        font='Open Sans',
+        pos=[0,0], height=letter_height, wrapWidth=None, ori=0.0, 
+        color='white', colorSpace='rgb', opacity=None, 
+        languageStyle='LTR',
+        depth=-1.0);
     
     # --- Initialize components for Routine "tutorial_wrap_up" ---
     tut_wrap_up_text = visual.TextStim(win=win, name='tut_wrap_up_text',
@@ -760,13 +774,20 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
     """
     
     # --- Initialize components for Routine "decision_window" ---
+    trial_instruction_text = visual.TextStim(win=win, name='trial_instruction_text',
+        text=None,
+        font='Open Sans',
+        pos=[0,0], height=letter_height, wrapWidth=None, ori=0.0, 
+        color='white', colorSpace='rgb', opacity=None, 
+        languageStyle='LTR',
+        depth=0.0);
     DEBUG = visual.TextStim(win=win, name='DEBUG',
         text=None,
         font='Open Sans',
         pos=(0, 0), height=0.05, wrapWidth=None, ori=0.0, 
         color='white', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
-        depth=-1.0);
+        depth=-2.0);
     give_response = keyboard.Keyboard()
     
     # --- Initialize components for Routine "hold" ---
@@ -786,6 +807,13 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
         color=element_color, colorSpace='rgb', opacity=1.0, 
         languageStyle='LTR',
         depth=0.0);
+    feedback_text = visual.TextStim(win=win, name='feedback_text',
+        text=None,
+        font='Open Sans',
+        pos=[0,0], height=letter_height, wrapWidth=None, ori=0.0, 
+        color='white', colorSpace='rgb', opacity=None, 
+        languageStyle='LTR',
+        depth=-1.0);
     
     # --- Initialize components for Routine "break_relax" ---
     break_text = visual.TextStim(win=win, name='break_text',
@@ -858,25 +886,21 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
         
         (
             "Your chances of success vary between trials. \n\n"
-            "In this case, your odds increase over time. You might want to wait a moment for a better chance of winning. \n\n "
+            "In the following demo trial, your odds increase over time. You might want to wait a moment for a better chance of winning. \n\n "
             "During the trial, press SPACE to go for the reward." #  Press E to start the demo.
         ),
         
         (
-            "Your chances of success vary between trials. \n\n"
-            "Careful, in this case, your odds are getting worse over time. \n\n "
-            "During the trial, press SPACE to go for the reward." #  Press E to start the demo.
+            "Careful, in the next case, your odds are getting worse over time."
         ),
         
         (
-            "Your chances of success vary between trials. \n\n"
-            "It may not always be so easy to tell if your odds are getting better or worse ... \n\n "
-            "During the trial, press SPACE to go for the reward." #  Press E to start the demo.
+            "It may not always be so easy to tell if your odds are getting better or worse ..."
         )
         
     ]
     
-    pre_task_pages = [
+    final_instruction_pages = [
     
         (
             "While the clock is running, please always focus on the fixation cross!\n\n"
@@ -1085,8 +1109,6 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
                 general_instruction_text_cont_prompt.tStart = t  # local t and not account for scr refresh
                 general_instruction_text_cont_prompt.tStartRefresh = tThisFlipGlobal  # on global time
                 win.timeOnFlip(general_instruction_text_cont_prompt, 'tStartRefresh')  # time at next scr refresh
-                # add timestamp to datafile
-                thisExp.timestampOnFlip(win, 'general_instruction_text_cont_prompt.started')
                 # update status
                 general_instruction_text_cont_prompt.status = STARTED
                 general_instruction_text_cont_prompt.setAutoDraw(True)
@@ -1185,7 +1207,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
                 globals()[paramName] = thisTutorial_yn[paramName]
         
         # set up handler to look after randomisation of conditions etc
-        tutorial_showcases = data.TrialHandler(nReps=5.0, method='sequential', 
+        tutorial_showcases = data.TrialHandler(nReps=len(tutorial_pages), method='sequential', 
             extraInfo=expInfo, originPath=-1,
             trialList=[None],
             seed=None, name='tutorial_showcases')
@@ -1237,6 +1259,11 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
             # apply
             tutorial_instruction_text.pos              = (0, new_y)
             tutorial_instruction_text_cont_prompt.pos  = (0, new_y)
+            # Run 'Begin Routine' code from hide_pointer_outline_tutorial
+            outline.opacity = 0
+            outline_bg.opacity = 0
+            rewardbar.opacity = 0
+            cross_opacity = 0
             # keep track of which components have finished
             tutorial_instructionComponents = [tutorial_instruction_text, tutorial_instruction_text_cont_prompt, tutorial_instruction_cont]
             for thisComponent in tutorial_instructionComponents:
@@ -1299,8 +1326,6 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
                     tutorial_instruction_text_cont_prompt.tStart = t  # local t and not account for scr refresh
                     tutorial_instruction_text_cont_prompt.tStartRefresh = tThisFlipGlobal  # on global time
                     win.timeOnFlip(tutorial_instruction_text_cont_prompt, 'tStartRefresh')  # time at next scr refresh
-                    # add timestamp to datafile
-                    thisExp.timestampOnFlip(win, 'tutorial_instruction_text_cont_prompt.started')
                     # update status
                     tutorial_instruction_text_cont_prompt.status = STARTED
                     tutorial_instruction_text_cont_prompt.setAutoDraw(True)
@@ -1308,7 +1333,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
                 # if tutorial_instruction_text_cont_prompt is active this frame...
                 if tutorial_instruction_text_cont_prompt.status == STARTED:
                     # update params
-                    tutorial_instruction_text_cont_prompt.setText(tutorial_pages[tutorial_showcases.thisN]+"\n\npress button to continue", log=False)
+                    tutorial_instruction_text_cont_prompt.setText(tutorial_pages[tutorial_showcases.thisN]+"\n\nPress the button to start the demo trial.", log=False)
                 
                 # *tutorial_instruction_cont* updates
                 
@@ -1359,6 +1384,12 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
                 if hasattr(thisComponent, "setAutoDraw"):
                     thisComponent.setAutoDraw(False)
             thisExp.addData('tutorial_instruction.stopped', globalClock.getTime())
+            # Run 'End Routine' code from hide_pointer_outline_tutorial
+            pointer.opacity = 1
+            pointer_blocker.opacity = 1
+            outline.opacity = 1
+            outline_bg.opacity = 1
+            cross.opacity = 1
             # the Routine "tutorial_instruction" was not non-slip safe, so reset the non-slip timer
             routineTimer.reset()
             
@@ -1615,7 +1646,12 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
             continueRoutine = True
             # update component parameters for each repeat
             thisExp.addData('decision_window.started', globalClock.getTime())
+            trial_instruction_text.setPos((0, -1.5*disk_r))
+            trial_instruction_text.setText('')
             # Run 'Begin Routine' code from update_searchloc
+            if tutorial:
+                trial_instruction_text.text = "press button to go for the reward"
+            
             inner.depth = -3
             
             # ---------- probability path ----------
@@ -1673,7 +1709,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
             give_response.rt = []
             _give_response_allKeys = []
             # keep track of which components have finished
-            decision_windowComponents = [DEBUG, give_response]
+            decision_windowComponents = [trial_instruction_text, DEBUG, give_response]
             for thisComponent in decision_windowComponents:
                 thisComponent.tStart = None
                 thisComponent.tStop = None
@@ -1695,6 +1731,24 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
                 tThisFlipGlobal = win.getFutureFlipTime(clock=None)
                 frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
                 # update/draw components on each frame
+                
+                # *trial_instruction_text* updates
+                
+                # if trial_instruction_text is starting this frame...
+                if trial_instruction_text.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                    # keep track of start time/frame for later
+                    trial_instruction_text.frameNStart = frameN  # exact frame index
+                    trial_instruction_text.tStart = t  # local t and not account for scr refresh
+                    trial_instruction_text.tStartRefresh = tThisFlipGlobal  # on global time
+                    win.timeOnFlip(trial_instruction_text, 'tStartRefresh')  # time at next scr refresh
+                    # update status
+                    trial_instruction_text.status = STARTED
+                    trial_instruction_text.setAutoDraw(True)
+                
+                # if trial_instruction_text is active this frame...
+                if trial_instruction_text.status == STARTED:
+                    # update params
+                    pass
                 # Run 'Each Frame' code from update_searchloc
                 pointer.ori   = pointer_start_angle + deg_per_sec * t          # continuous CCW sweep
                 pointer_blocker.ori   = pointer_start_angle + deg_per_sec * t          
@@ -1935,6 +1989,8 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
             continueRoutine = True
             # update component parameters for each repeat
             thisExp.addData('reward_reveal.started', globalClock.getTime())
+            feedback_text.setPos((0, -1.5*disk_r))
+            feedback_text.setText('')
             # Run 'Begin Routine' code from calculate_reward
             # TODO: yes or no based on bubble size
             
@@ -1942,8 +1998,31 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
             
             if current_i + 1 > len(p_noisy):
                 reward_prob = 0 # waited until end of trial
+                if tutorial:
+                    feedback_text.text = "trial time exceeded.\nplease respond quicker next time"
             else:
+                
                 reward_prob = p_noisy[current_i]
+                
+                if tutorial:
+                    
+                    # quick reaction
+                    if current_i + 1 < n_samples/2:
+                        if p_end < 0.5:
+                            reward_prob = 1
+                            feedback_text.text = "Great reaction! You responded before the odds got too bad."
+                        elif p_end > 0.5:
+                            reward_prob = 0
+                            feedback_text.text = "You went for it early and lost.\nWhen the indicator grows, it pays to be patient."
+                    
+                    # slow reaction
+                    else:
+                        if p_end < 0.5:
+                            reward_prob = 0
+                            feedback_text.text = "You waited too long as your odds became slim, and you lost."
+                        elif p_end > 0.5:
+                            reward_prob = 1
+                            feedback_text.text = "You waited for better chances and you won!"
             
             rand_float = random.random()
             if rand_float > reward_prob:
@@ -1957,16 +2036,19 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
                 score += reward_size
                 bb.sendMarker(val=210)
             # Run 'Begin Routine' code from calc_reward_reveal_time
-            reward_reveal_time = 1.0
-            jitter          = np.random.uniform(-0.1, +0.1)
-            reward_reveal_time += jitter
+            if tutorial:
+                reward_reveal_time = 3.0
+            else:
+                reward_reveal_time = 1.0
+                jitter          = np.random.uniform(-0.1, +0.1)
+                reward_reveal_time += jitter
             # Run 'Begin Routine' code from hide_rewardbar
             rewardbar.opacity = 0
             cross.opacity = 0
             pointer.opacity = 0
             pointer_blocker.opacity = 0
             # keep track of which components have finished
-            reward_revealComponents = [current_win_text]
+            reward_revealComponents = [current_win_text, feedback_text]
             for thisComponent in reward_revealComponents:
                 thisComponent.tStart = None
                 thisComponent.tStop = None
@@ -2006,6 +2088,24 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
                 
                 # if current_win_text is active this frame...
                 if current_win_text.status == STARTED:
+                    # update params
+                    pass
+                
+                # *feedback_text* updates
+                
+                # if feedback_text is starting this frame...
+                if feedback_text.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                    # keep track of start time/frame for later
+                    feedback_text.frameNStart = frameN  # exact frame index
+                    feedback_text.tStart = t  # local t and not account for scr refresh
+                    feedback_text.tStartRefresh = tThisFlipGlobal  # on global time
+                    win.timeOnFlip(feedback_text, 'tStartRefresh')  # time at next scr refresh
+                    # update status
+                    feedback_text.status = STARTED
+                    feedback_text.setAutoDraw(True)
+                
+                # if feedback_text is active this frame...
+                if feedback_text.status == STARTED:
                     # update params
                     pass
                 # Run 'Each Frame' code from calc_reward_reveal_time
@@ -2061,8 +2161,9 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
             if (global_clock.getTime() - task_start_time) // block_dur > breaks_given:
                 trials.finished = True
             # Run 'End Routine' code from hide_rewardbar
-            rewardbar.opacity = 1
-            cross.opacity = 1
+            if not tutorial:
+                rewardbar.opacity = 1
+                cross.opacity = 1
             # Run 'End Routine' code from track_exp_time
             if global_clock.getTime() >= task_time:
                 trials.finished = True
@@ -2073,7 +2174,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
             if thisSession is not None:
                 # if running in a Session with a Liaison client, send data up to now
                 thisSession.sendExperimentData()
-        # completed 5.0 repeats of 'tutorial_showcases'
+        # completed len(tutorial_pages) repeats of 'tutorial_showcases'
         
         
         # --- Prepare to start Routine "tutorial_wrap_up" ---
@@ -2098,6 +2199,11 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
         # apply
         tut_wrap_up_text.pos              = (0, new_y)
         tut_wrap_up_text_cont_prompt.pos  = (0, new_y)
+        # Run 'Begin Routine' code from hide_pointer_outline_tutorial_end
+        outline.opacity = 0
+        outline_bg.opacity = 0
+        rewardbar.opacity = 0
+        cross_opacity = 0
         # keep track of which components have finished
         tutorial_wrap_upComponents = [tut_wrap_up_text, tut_wrap_up_text_cont_prompt, tut_wrap_up_cont]
         for thisComponent in tutorial_wrap_upComponents:
@@ -2496,7 +2602,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
     routineTimer.reset()
     
     # set up handler to look after randomisation of conditions etc
-    final_pages = data.TrialHandler(nReps=len(pre_task_pages), method='sequential', 
+    final_pages = data.TrialHandler(nReps=len(final_instruction_pages), method='sequential', 
         extraInfo=expInfo, originPath=-1,
         trialList=[None],
         seed=None, name='final_pages')
@@ -2539,7 +2645,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
         final_instruction_text_cont_prompt.anchorVert = "top" 
         
         # re-calculating center
-        text = final_instruction_pages[general_pages.thisN]
+        text = final_instruction_pages[final_pages.thisN]
         n_lines = len(text.split('\n')) 
         text_height = letter_height*n_lines
         new_y = 0.5*text_height
@@ -2610,8 +2716,6 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
                 final_instruction_text_cont_prompt.tStart = t  # local t and not account for scr refresh
                 final_instruction_text_cont_prompt.tStartRefresh = tThisFlipGlobal  # on global time
                 win.timeOnFlip(final_instruction_text_cont_prompt, 'tStartRefresh')  # time at next scr refresh
-                # add timestamp to datafile
-                thisExp.timestampOnFlip(win, 'final_instruction_text_cont_prompt.started')
                 # update status
                 final_instruction_text_cont_prompt.status = STARTED
                 final_instruction_text_cont_prompt.setAutoDraw(True)
@@ -2673,6 +2777,12 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
         # Run 'End Routine' code from init_task_counter
         global_clock = core.Clock()
         task_start_time = global_clock.getTime()
+        # Run 'End Routine' code from show_pointer_outline
+        pointer.opacity = 1
+        pointer_blocker.opacity = 1
+        outline.opacity = 1
+        outline_bg.opacity = 1
+        cross.opacity = 1
         # the Routine "final_instruction" was not non-slip safe, so reset the non-slip timer
         routineTimer.reset()
         thisExp.nextEntry()
@@ -2680,7 +2790,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
         if thisSession is not None:
             # if running in a Session with a Liaison client, send data up to now
             thisSession.sendExperimentData()
-    # completed len(pre_task_pages) repeats of 'final_pages'
+    # completed len(final_instruction_pages) repeats of 'final_pages'
     
     
     # set up handler to look after randomisation of conditions etc
@@ -2713,7 +2823,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
                 globals()[paramName] = thisBreak[paramName]
         
         # set up handler to look after randomisation of conditions etc
-        trials = data.TrialHandler(nReps=10000.0, method='random', 
+        trials = data.TrialHandler(nReps=1000.0, method='random', 
             extraInfo=expInfo, originPath=-1,
             trialList=[None],
             seed=None, name='trials')
@@ -2994,7 +3104,12 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
             continueRoutine = True
             # update component parameters for each repeat
             thisExp.addData('decision_window.started', globalClock.getTime())
+            trial_instruction_text.setPos((0, -1.5*disk_r))
+            trial_instruction_text.setText('')
             # Run 'Begin Routine' code from update_searchloc
+            if tutorial:
+                trial_instruction_text.text = "press button to go for the reward"
+            
             inner.depth = -3
             
             # ---------- probability path ----------
@@ -3052,7 +3167,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
             give_response.rt = []
             _give_response_allKeys = []
             # keep track of which components have finished
-            decision_windowComponents = [DEBUG, give_response]
+            decision_windowComponents = [trial_instruction_text, DEBUG, give_response]
             for thisComponent in decision_windowComponents:
                 thisComponent.tStart = None
                 thisComponent.tStop = None
@@ -3074,6 +3189,24 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
                 tThisFlipGlobal = win.getFutureFlipTime(clock=None)
                 frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
                 # update/draw components on each frame
+                
+                # *trial_instruction_text* updates
+                
+                # if trial_instruction_text is starting this frame...
+                if trial_instruction_text.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                    # keep track of start time/frame for later
+                    trial_instruction_text.frameNStart = frameN  # exact frame index
+                    trial_instruction_text.tStart = t  # local t and not account for scr refresh
+                    trial_instruction_text.tStartRefresh = tThisFlipGlobal  # on global time
+                    win.timeOnFlip(trial_instruction_text, 'tStartRefresh')  # time at next scr refresh
+                    # update status
+                    trial_instruction_text.status = STARTED
+                    trial_instruction_text.setAutoDraw(True)
+                
+                # if trial_instruction_text is active this frame...
+                if trial_instruction_text.status == STARTED:
+                    # update params
+                    pass
                 # Run 'Each Frame' code from update_searchloc
                 pointer.ori   = pointer_start_angle + deg_per_sec * t          # continuous CCW sweep
                 pointer_blocker.ori   = pointer_start_angle + deg_per_sec * t          
@@ -3314,6 +3447,8 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
             continueRoutine = True
             # update component parameters for each repeat
             thisExp.addData('reward_reveal.started', globalClock.getTime())
+            feedback_text.setPos((0, -1.5*disk_r))
+            feedback_text.setText('')
             # Run 'Begin Routine' code from calculate_reward
             # TODO: yes or no based on bubble size
             
@@ -3321,8 +3456,31 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
             
             if current_i + 1 > len(p_noisy):
                 reward_prob = 0 # waited until end of trial
+                if tutorial:
+                    feedback_text.text = "trial time exceeded.\nplease respond quicker next time"
             else:
+                
                 reward_prob = p_noisy[current_i]
+                
+                if tutorial:
+                    
+                    # quick reaction
+                    if current_i + 1 < n_samples/2:
+                        if p_end < 0.5:
+                            reward_prob = 1
+                            feedback_text.text = "Great reaction! You responded before the odds got too bad."
+                        elif p_end > 0.5:
+                            reward_prob = 0
+                            feedback_text.text = "You went for it early and lost.\nWhen the indicator grows, it pays to be patient."
+                    
+                    # slow reaction
+                    else:
+                        if p_end < 0.5:
+                            reward_prob = 0
+                            feedback_text.text = "You waited too long as your odds became slim, and you lost."
+                        elif p_end > 0.5:
+                            reward_prob = 1
+                            feedback_text.text = "You waited for better chances and you won!"
             
             rand_float = random.random()
             if rand_float > reward_prob:
@@ -3336,16 +3494,19 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
                 score += reward_size
                 bb.sendMarker(val=210)
             # Run 'Begin Routine' code from calc_reward_reveal_time
-            reward_reveal_time = 1.0
-            jitter          = np.random.uniform(-0.1, +0.1)
-            reward_reveal_time += jitter
+            if tutorial:
+                reward_reveal_time = 3.0
+            else:
+                reward_reveal_time = 1.0
+                jitter          = np.random.uniform(-0.1, +0.1)
+                reward_reveal_time += jitter
             # Run 'Begin Routine' code from hide_rewardbar
             rewardbar.opacity = 0
             cross.opacity = 0
             pointer.opacity = 0
             pointer_blocker.opacity = 0
             # keep track of which components have finished
-            reward_revealComponents = [current_win_text]
+            reward_revealComponents = [current_win_text, feedback_text]
             for thisComponent in reward_revealComponents:
                 thisComponent.tStart = None
                 thisComponent.tStop = None
@@ -3385,6 +3546,24 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
                 
                 # if current_win_text is active this frame...
                 if current_win_text.status == STARTED:
+                    # update params
+                    pass
+                
+                # *feedback_text* updates
+                
+                # if feedback_text is starting this frame...
+                if feedback_text.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                    # keep track of start time/frame for later
+                    feedback_text.frameNStart = frameN  # exact frame index
+                    feedback_text.tStart = t  # local t and not account for scr refresh
+                    feedback_text.tStartRefresh = tThisFlipGlobal  # on global time
+                    win.timeOnFlip(feedback_text, 'tStartRefresh')  # time at next scr refresh
+                    # update status
+                    feedback_text.status = STARTED
+                    feedback_text.setAutoDraw(True)
+                
+                # if feedback_text is active this frame...
+                if feedback_text.status == STARTED:
                     # update params
                     pass
                 # Run 'Each Frame' code from calc_reward_reveal_time
@@ -3440,8 +3619,9 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
             if (global_clock.getTime() - task_start_time) // block_dur > breaks_given:
                 trials.finished = True
             # Run 'End Routine' code from hide_rewardbar
-            rewardbar.opacity = 1
-            cross.opacity = 1
+            if not tutorial:
+                rewardbar.opacity = 1
+                cross.opacity = 1
             # Run 'End Routine' code from track_exp_time
             if global_clock.getTime() >= task_time:
                 trials.finished = True
@@ -3452,7 +3632,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
             if thisSession is not None:
                 # if running in a Session with a Liaison client, send data up to now
                 thisSession.sendExperimentData()
-        # completed 10000.0 repeats of 'trials'
+        # completed 1000.0 repeats of 'trials'
         
         
         # --- Prepare to start Routine "break_relax" ---
