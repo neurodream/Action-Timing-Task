@@ -13,7 +13,7 @@ from matplotlib.colors import LinearSegmentedColormap
 
 class OptimalAgent:
     """
-    Bayesian one‑step‑look‑ahead agent
+    Bayesian one-step-look-ahead agent
     """
     def __init__(self, task, sigma=0.05):
 
@@ -434,6 +434,7 @@ def plot_policy_LUT(policy_LUT, sim_task=None, color="black", policy_label="", a
 
 def plot_compare_policies(
                     policies,
+                    title="",
                     colors=None,
                     n_runs=10,
                     policy_LUT_ind=False,
@@ -535,6 +536,9 @@ def plot_compare_policies(
             sim_task=sim_tasks[policy_LUT_ind],
             color=base_color, policy_label=policy, ax=axes[0, 1]
             )
+        
+    if len(title) > 0:
+        fig.suptitle(title)
 
     plt.tight_layout()
     plt.show()
